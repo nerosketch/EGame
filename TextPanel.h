@@ -23,13 +23,15 @@ class TextPanel : public Box9Sprite
 {
 private:
     INHERITED(Box9Sprite);
+
+protected:
     spTextField text_field;
 
     void _kill_me(Event*);
     EventCallback _die_event;
 
 public:
-    TextPanel(const string text);
+    TextPanel(const string& text);
     TextPanel(const TextPanel& orig);
     virtual ~TextPanel();
 

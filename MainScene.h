@@ -24,10 +24,14 @@ DECLARE_SMART(MainScene, spMainScene);
 class MainScene : public Stage
 {
 private:
+    INHERITED(Stage);
     spSprite arrow;
-    spTextButton run_btn;
     float _angle;
     std::list<spPlayer> _players;
+
+    void on_click_run(Event*);
+    void on_speen_done(Event*);
+    void on_add_player(Event*);
 
 public:
     MainScene();
@@ -35,9 +39,6 @@ public:
     virtual ~MainScene();
 
     void init();
-
-    void on_click_run(Event*);
-    void on_speen_done(Event*);
 };
 
 #endif /* MAINSCENE_H */

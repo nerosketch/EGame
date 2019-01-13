@@ -12,16 +12,13 @@
 TextButton::TextButton() :
 _text(new TextField)
 {
-    const ResFont *font = res::resources.getResFont("SanasoftHermes");
-    const ResAnim* p_res_anim = res::resources.getResAnim("btn");
-
-    _text->setFont(font);
+    _text->setFont(res::resources.getResFont("SanasoftHermes"));
     _text->setFontSize(21);
     //_text->setAnchor(0.5f, 0.5f);
-    _text->setPosition(getSize() / 4);
+    _text->setPosition(10.f, 10.f);
     _text->setColor(Color::Azure);
 
-    setResAnim(p_res_anim);
+    setResAnim(res::resources.getResAnim("btn"));
     addChild(_text);
 }
 

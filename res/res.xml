@@ -13,6 +13,8 @@
         <image file="mem1.png"/>
         <image file="niga.png"/>
         <image file="panel.png"/>
-        <image file="close_button.png"/>
+        <image file="close_button.png" cols="2"/>
+        <image file="panel_b.png"/>
+        <image file="play_btn.png"/>
     </atlas>
 </resources>

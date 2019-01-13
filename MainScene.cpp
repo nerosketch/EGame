@@ -5,11 +5,12 @@
  * Created on January 12, 2019, 11:03 PM
  */
 #include "resources.h"
+#include "AddPlayerScene.h"
 #include "MainScene.h"
 
 
 MainScene::MainScene() :
-arrow(new Sprite), run_btn(new TextButton("Крути!")),
+arrow(new Sprite),
 _angle(0.f)
 {}
 
@@ -31,21 +32,23 @@ void MainScene::init()
     addChild(arrow);
 
     // Кнопка кручения
+    spTextButton run_btn = new TextButton("Крути!");
     run_btn->setPosition(20.f, 85.f);
     run_btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &MainScene::on_click_run));
     addChild(run_btn);
-    
+
+    // Кнопка диалога добавления игрока
+    spTextButton add_player_btn = new TextButton("Добавить");
+    add_player_btn->setPosition(20.f, 140.f);
+    add_player_btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &MainScene::on_add_player));
+    addChild(add_player_btn);
+
     // Добавим авки
-    spPlayer niga = new Player("niga");
-    _players.push_back(niga);
-    spPlayer girl1 = new Player("girl1");
-    _players.push_back(girl1);
-    spPlayer girl2 = new Player("girl2");
-    _players.push_back(girl2);
-    spPlayer boy1 = new Player("boy1");
-    _players.push_back(boy1);
-    spPlayer mem1 = new Player("mem1");
-    _players.push_back(mem1);
+    _players.push_back(new Player("niga"));
+    _players.push_back(new Player("girl1"));
+    _players.push_back(new Player("girl2"));
+    _players.push_back(new Player("boy1"));
+    _players.push_back(new Player("mem1"));
 
     const uint avs_count = _players.size();
     const float round = MATH_PI * 2;
@@ -61,9 +64,6 @@ void MainScene::init()
             center_pos.x + 240.f,
             center_pos.y
         );
-        
-        logs::messageln("player_angle=%.4f, name=%s",
-                    angle, player->getName().c_str());
 
         // Распологаем авки вокруг центра
         r.x = center_pos.x + (player->getPosition().x - center_pos.x) * cos(angle) - (player->getPosition().y - center_pos.y) * sin(angle);
@@ -98,12 +98,10 @@ void MainScene::on_speen_done(Event*)
     {
         const int loop_count = _angle / one_round;
         arrow_angle = _angle - loop_count * one_round;
-        logs::messageln("rAngle: %.3f", arrow_angle);
     }
     else
     {
         arrow_angle = _angle;
-        logs::messageln("Angle: %.3f", _angle);
     }
     arrow->setRotation(arrow_angle);
 
@@ -119,11 +117,21 @@ void MainScene::on_speen_done(Event*)
 
         if(arrow_angle > a && arrow_angle < b)
         {
-            logs::messageln("a=%.4f, b=%.4f, player_angle=%.4f, arrow_angle=%.4f",
-                    a, b, player_angle, arrow_angle);
             player->win();
             break;
         }
     }
 
+}
+
+
+
+void MainScene::on_add_player(Event*)
+{
+    spAddPlayerScene ap = new AddPlayerScene;
+    //ap->setAnchor(0.5f, 0.5f);
+    //ap->setPosition(getPosition()/2);
+    ap->setPosition(90.f, 70.f);
+    //ap->setSize(getSize() * 0.7f);
+    addChild(ap);
 }

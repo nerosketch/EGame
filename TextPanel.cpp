@@ -14,15 +14,16 @@
 #define TILE_HEIGHT 16.f
 
 
-TextPanel::TextPanel(const string text)
+TextPanel::TextPanel(const string& text)
 {
+    TextField::setDefaultFont(res::resources.getResFont("SanasoftHermes"));
     const ResAnim *p_res_panel = res::resources.getResAnim("panel");
     setResAnim(p_res_panel);
     setGuides(TILE_WIDTH, TILE_WIDTH, TILE_HEIGHT, TILE_HEIGHT);
 
     text_field = new TextField;
-    text_field->setFont(res::resources.getResFont("SanasoftHermes"));
     //text_field->setAlign(TextStyle::VerticalAlign::VALIGN_BASELINE, TextStyle::HorizontalAlign::HALIGN_LEFT);
+    text_field->setPosition(10.f, 10.f);
     text_field->setColor(Color::Thistle);
     text_field->setFontSize(14);
     addChild(text_field);
