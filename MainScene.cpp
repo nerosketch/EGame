@@ -7,6 +7,7 @@
 #include "resources.h"
 #include "AddPlayerScene.h"
 #include "MainScene.h"
+#include "AddTask.h"
 
 
 MainScene::MainScene() :
@@ -38,10 +39,16 @@ void MainScene::init()
     addChild(run_btn);
 
     // Кнопка диалога добавления игрока
-    spTextButton add_player_btn = new TextButton("Добавить");
+    spTextButton add_player_btn = new TextButton("Игроки");
     add_player_btn->setPosition(20.f, 140.f);
     add_player_btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &MainScene::on_add_player));
     addChild(add_player_btn);
+
+    // Кнопка диалога добавления вопроса
+    spTextButton add_question_btn = new TextButton("Вопросы");
+    add_question_btn->setPosition(20.f, 195.f);
+    add_question_btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &MainScene::on_add_question));
+    addChild(add_question_btn);
 
     // Добавим авки
     _players.push_back(new Player("niga"));
@@ -134,4 +141,12 @@ void MainScene::on_add_player(Event*)
     ap->setPosition(90.f, 70.f);
     //ap->setSize(getSize() * 0.7f);
     addChild(ap);
+}
+
+
+void MainScene::on_add_question(Event*)
+{
+    spAddTask at = new AddTask;
+    at->setPosition(90.f, 70.f);
+    addChild(at);
 }

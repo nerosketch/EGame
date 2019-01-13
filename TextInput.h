@@ -40,6 +40,8 @@ public:
     {
         return _text->getText();
     }
+    inline spTextField& getTextField(){ return _text; }
+    inline spInputText& getInputText(){ return _input; }
 
 };
 

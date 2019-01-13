@@ -32,6 +32,7 @@ private:
     void on_click_run(Event*);
     void on_speen_done(Event*);
     void on_add_player(Event*);
+    void on_add_question(Event*);
 
 public:
     MainScene();
