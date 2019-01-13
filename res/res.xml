@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <set path="res"/>
+    <ftfont file="SanasoftHermes.ttf"/>
+
+    <set path="res/img"/>
+    <atlas>
+        <image file="arrow.png"/>
+        <image file="btn.png"/>
+        <image file="boy1.png"/>
+        <image file="girl1.png"/>
+        <image file="girl2.png"/>
+        <image file="mem1.png"/>
+        <image file="niga.png"/>
+        <image file="panel.png"/>
+        <image file="close_button.png"/>
+    </atlas>
+</resources>
