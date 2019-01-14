@@ -8,6 +8,7 @@
 #include "resources.h"
 #include "TextButton.h"
 #include "AddTask.h"
+#include "Task.h"
 
 
 AddTask::AddTask() : _text_question_title(new TextInput),
@@ -86,4 +87,11 @@ void AddTask::_on_die(Event*)
 void AddTask::_on_ok_click(Event*)
 {
     logs::messageln("AddTask::_on_ok_click");
+
+    spTask task(new Task);
+    task->setName(_text_question_title->getText());
+    task->setDescription(_text_question_descr->getText());
+    Task::addTaskGlobal(task);
+
+    detach();
 }
