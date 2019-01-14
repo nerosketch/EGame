@@ -51,8 +51,8 @@ void run()
     desc.title = "EGame";
 
     // The initial window size can be set up here on SDL builds, ignored on Mobile devices
-    desc.w = 960;
-    desc.h = 540;
+    desc.w = 1300;
+    desc.h = 700;
     //desc.resizable = true;
     //desc.fullscreen = true;
 

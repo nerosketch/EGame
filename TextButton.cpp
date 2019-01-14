@@ -15,10 +15,10 @@ _text(new TextField)
     _text->setFont(res::resources.getResFont("SanasoftHermes"));
     _text->setFontSize(21);
     //_text->setAnchor(0.5f, 0.5f);
-    _text->setPosition(10.f, 10.f);
+    _text->setPosition(10.f, 7.f);
     _text->setColor(Color::Azure);
 
-    setResAnim(res::resources.getResAnim("btn"));
+    setResAnim(res::resources.getResAnim("btn_i"));
     addChild(_text);
 }
 

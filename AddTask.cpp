@@ -63,7 +63,6 @@ _text_question_descr(new TextInput)
     // Кнопка ОК
     spTextButton ok_btn = new TextButton("Сохранить");
     ok_btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &AddTask::_on_ok_click));
-    ok_btn->setResAnim(res::resources.getResAnim("btn"));
     ok_btn->setAnchor(0.5f, 0.5f);
     ok_btn->setPosition(getWidth() / 2.f, getHeight() - ok_btn->getHeight());
     addChild(ok_btn);

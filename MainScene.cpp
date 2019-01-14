@@ -11,7 +11,7 @@
 
 
 MainScene::MainScene() :
-arrow(new Sprite),
+arrow(new Sprite), rulet(new Sprite),
 _angle(0.f)
 {}
 
@@ -26,11 +26,33 @@ MainScene::~MainScene()
 
 void MainScene::init()
 {
+    //setResAnim(res::resources.getResAnim("rulet"));
+
+    // Фон слева
+    spSprite li = new Sprite;
+    li->setResAnim(res::resources.getResAnim("FQhyYkLevM0"));
+    li->setScale(getHeight() / li->getHeight() * 0.8f);
+    li->setPosition(0.f, getHeight()/2 - li->getScaledHeight()/2);
+    addChild(li);
+    // Фон справа
+    spSprite ri = new Sprite;
+    ri->setResAnim(res::resources.getResAnim("MpLDyxcQ8kY"));
+    //ri->setAnchor(0.5f, 0.5f);
+    ri->setScale(getHeight() / ri->getHeight() * 0.7f);
+    ri->setPosition(getWidth() - ri->getScaledWidth(), getHeight()/2 - ri->getScaledHeight()/2);
+    addChild(ri);
+
+    // Фон в центре под стрелкой
+    rulet->setAnchor(0.5f, 0.5f);
+    rulet->setResAnim(res::resources.getResAnim("rulet"));
+    rulet->setPosition(getSize() / 2);
+    addChild(rulet);
+
     // Стрелка
     arrow->setResAnim(res::resources.getResAnim("arrow"));
     arrow->setAnchor(0.5f, 0.5f);
-    arrow->setPosition(getSize() / 2);
-    addChild(arrow);
+    arrow->setPosition(rulet->getSize() / 2.f);
+    rulet->addChild(arrow);
 
     // Кнопка кручения
     spTextButton run_btn = new TextButton("Крути!");
@@ -61,14 +83,14 @@ void MainScene::init()
     const float round = MATH_PI * 2;
     const float part = round / avs_count;
     float angle = 0.f;
-    const Vector2& center_pos = arrow->getPosition();
+    const Vector2& center_pos = rulet->getPosition();
     Vector2 r;
     
     for(spPlayer& player : _players)
     {
         // задаём радиус круга 240
         player->setPosition(
-            center_pos.x + 240.f,
+            center_pos.x + 320.f,
             center_pos.y
         );
 
@@ -93,6 +115,9 @@ void MainScene::on_click_run(Event*)
 
     arrow->addTween(Sprite::TweenRotation(_angle), 5000, 1, false, 0, Tween::ease_inOutBounce)
         ->setDoneCallback(CLOSURE(this, &MainScene::on_speen_done));
+
+    rulet->addTween(Sprite::TweenRotation(-MATH_PI*2.f), 5000, 1, false, 0, Tween::ease_outQuad)
+        ->setDoneCallback(CLOSURE(this, &MainScene::on_rulet_speen_done));
 }
 
 
@@ -149,4 +174,10 @@ void MainScene::on_add_question(Event*)
     spAddTask at = new AddTask;
     at->setPosition(90.f, 70.f);
     addChild(at);
+}
+
+
+void MainScene::on_rulet_speen_done(Event*)
+{
+    rulet->setRotation(0.f);
 }

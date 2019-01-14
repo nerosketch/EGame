@@ -71,7 +71,6 @@ _current_ava(0), text_inp_name(new TextInput)
     // Кнопка ОК
     spTextButton ok_btn = new TextButton("ОК");
     ok_btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &AddPlayerScene::_on_ok_click));
-    ok_btn->setResAnim(res::resources.getResAnim("btn"));
     ok_btn->setAnchor(0.5f, 0.5f);
     ok_btn->setPosition(getWidth() / 2.f, getHeight() - ok_btn->getHeight());
     addChild(ok_btn);

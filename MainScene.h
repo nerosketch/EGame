@@ -26,6 +26,7 @@ class MainScene : public Stage
 private:
     INHERITED(Stage);
     spSprite arrow;
+    spSprite rulet;
     float _angle;
     std::list<spPlayer> _players;
 
@@ -33,6 +34,7 @@ private:
     void on_speen_done(Event*);
     void on_add_player(Event*);
     void on_add_question(Event*);
+    void on_rulet_speen_done(Event*);
 
 public:
     MainScene();

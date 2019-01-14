@@ -46,25 +46,25 @@ void Task::removeTaskGlobal(const spTask& t)
 
 
 
-static void Task::saveToFile(const string& fname)
+void Task::saveToFile(const string& fname)
 {
-    pugi::xml_document doc;
+    /*pugi::xml_document doc;
     pugi::xml_node root = doc.append_child("root");
 
     pugi::xml_node tasks = root.append_child("description");
 
-    doc.save_file(fname);
+    doc.save_file(fname);*/
 }
 
 
-static void Task::loadFromFile(const string& fname)
+void Task::loadFromFile(const string& fname)
 {
     //load file to buffer
-    ox::file::buffer bf;
+    /*ox::file::buffer bf;
     ox::file::read(fname, bf);
 
     pugi::xml_document doc;
     doc.load_buffer(&bf.data[0], bf.size());
     
-    doc.
+    doc.*/
 }
