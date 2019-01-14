@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>AddPlayerScene.h</itemPath>
+      <itemPath>AddTask.h</itemPath>
+      <itemPath>Avatar.h</itemPath>
+      <itemPath>Dialog.h</itemPath>
+      <itemPath>Game.h</itemPath>
+      <itemPath>MainScene.h</itemPath>
+      <itemPath>Player.h</itemPath>
+      <itemPath>Task.h</itemPath>
+      <itemPath>TextButton.h</itemPath>
+      <itemPath>TextInput.h</itemPath>
+      <itemPath>TextPanel.h</itemPath>
+      <itemPath>flags.h</itemPath>
+      <itemPath>resources.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+      <itemPath>res/res.xml</itemPath>
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>AddPlayerScene.cpp</itemPath>
+      <itemPath>AddTask.cpp</itemPath>
+      <itemPath>Avatar.cpp</itemPath>
+      <itemPath>Dialog.cpp</itemPath>
+      <itemPath>Game.cpp</itemPath>
+      <itemPath>MainScene.cpp</itemPath>
+      <itemPath>Player.cpp</itemPath>
+      <itemPath>Task.cpp</itemPath>
+      <itemPath>TextButton.cpp</itemPath>
+      <itemPath>TextInput.cpp</itemPath>
+      <itemPath>TextPanel.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+      <itemPath>resources.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <standard>8</standard>
+          <incDir>
+            <pElem>./lib/oxygine-framework/oxygine/src</pElem>
+            <pElem>./lib/oxygine-freetype/src</pElem>
+          </incDir>
+          <commandLine>`pkg-config --cflags sdl2`</commandLine>
+          <preprocessorList>
+            <Elem>DBG</Elem>
+          </preprocessorList>
+        </ccTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>./lib/oxygine-framework/libs</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibFileItem>./lib/oxygine-framework/liboxygine-framework.a</linkerLibFileItem>
+            <linkerLibFileItem>./lib/oxygine-freetype/liboxygine-freetype.a</linkerLibFileItem>
+            <linkerLibFileItem>./lib/oxygine-framework/libs/SDL2main.lib</linkerLibFileItem>
+            <linkerLibLibItem>pthread</linkerLibLibItem>
+            <linkerLibLibItem>GL</linkerLibLibItem>
+            <linkerLibLibItem>GLU</linkerLibLibItem>
+            <linkerLibLibItem>glut</linkerLibLibItem>
+            <linkerLibLibItem>png</linkerLibLibItem>
+            <linkerLibLibItem>z</linkerLibLibItem>
+            <linkerLibLibItem>SDL2</linkerLibLibItem>
+            <linkerLibLibItem>jpeg</linkerLibLibItem>
+            <linkerLibLibItem>openal</linkerLibLibItem>
+            <linkerLibLibItem>freetype</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="AddPlayerScene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AddPlayerScene.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AddTask.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AddTask.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Avatar.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Avatar.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Dialog.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Dialog.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Game.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Game.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MainScene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MainScene.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Player.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Task.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Task.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TextButton.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TextButton.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TextInput.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TextInput.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TextPanel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TextPanel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="flags.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="res/res.xml" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="resources.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="resources.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <standard>8</standard>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="AddPlayerScene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AddPlayerScene.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AddTask.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AddTask.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Avatar.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Avatar.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Dialog.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Dialog.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Game.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Game.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MainScene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MainScene.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Player.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Task.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Task.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TextButton.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TextButton.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TextInput.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TextInput.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TextPanel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TextPanel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="flags.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="res/res.xml" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="resources.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="resources.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

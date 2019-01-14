@@ -11,6 +11,7 @@
 #include <oxygine-framework.h>
 #include "flags.h"
 #include "TextInput.h"
+#include "Dialog.h"
 
 
 using namespace oxygine;
@@ -19,11 +20,9 @@ using namespace oxygine;
 DECLARE_SMART(AddPlayerScene, spAddPlayerScene);
 
 
-class AddPlayerScene : public Box9Sprite
+class AddPlayerScene : public Dialog
 {
 private:
-    INHERITED(Box9Sprite);
-    void _on_die(Event*);
     void _on_select_left(Event*);
     void _on_select_right(Event*);
     void _on_ok_click(Event*);

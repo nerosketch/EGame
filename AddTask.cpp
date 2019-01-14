@@ -14,16 +14,6 @@
 AddTask::AddTask() : _text_question_title(new TextInput),
 _text_question_descr(new TextInput)
 {
-    setResAnim(res::resources.getResAnim("panel_b"));
-    setSize(744.f, 370.f);
-
-    // кнопка закрытия
-    spButton close_btn = new Button;
-    close_btn->setResAnim(res::resources.getResAnim("close_button"));
-    close_btn->setPosition(getWidth() - close_btn->getWidth(), 0.f);
-    close_btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &AddTask::_on_die));
-    addChild(close_btn);
-
     // Текст заголовок
     spTextField title = new TextField;
     title->setText("Добавить вопрос");
@@ -75,12 +65,6 @@ AddTask::AddTask(const AddTask&)
 
 AddTask::~AddTask()
 {}
-
-
-void AddTask::_on_die(Event*)
-{
-    detach();
-}
 
 
 void AddTask::_on_ok_click(Event*)

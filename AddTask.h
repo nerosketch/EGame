@@ -10,6 +10,7 @@
 
 #include <oxygine-framework.h>
 #include "TextInput.h"
+#include "Dialog.h"
 
 
 using namespace oxygine;
@@ -17,11 +18,9 @@ using namespace oxygine;
 DECLARE_SMART(AddTask, spAddTask);
 
 
-class AddTask : public Box9Sprite
+class AddTask : public Dialog
 {
 private:
-    INHERITED(Box9Sprite);
-    void _on_die(Event*);
     void _on_ok_click(Event*);
     spTextInput _text_question_title;
     spTextInput _text_question_descr;

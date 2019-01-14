@@ -17,16 +17,6 @@ const char* ava_names[] = {"niga", "girl1", "girl2", "boy1", "mem1"};
 AddPlayerScene::AddPlayerScene() : _ava_im(new Sprite),
 _current_ava(0), text_inp_name(new TextInput)
 {
-    setResAnim(res::resources.getResAnim("panel_b"));
-    setSize(744.f, 370.f);
-
-    // кнопка закрытия
-    spButton close_btn = new Button;
-    close_btn->setResAnim(res::resources.getResAnim("close_button"));
-    close_btn->setPosition(getWidth() - close_btn->getWidth(), 0.f);
-    close_btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &AddPlayerScene::_on_die));
-    addChild(close_btn);
-
     // Текст заголовок
     spTextField title = new TextField;
     title->setText("Добавить игрока");
@@ -83,12 +73,6 @@ AddPlayerScene::AddPlayerScene(const AddPlayerScene& o)
 
 AddPlayerScene::~AddPlayerScene()
 {}
-
-
-void AddPlayerScene::_on_die(Event*)
-{
-    detach();
-}
 
 
 void AddPlayerScene::_on_select_left(Event*)
