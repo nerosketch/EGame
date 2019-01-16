@@ -33,8 +33,9 @@ private:
     void on_click_run(Event*);
     void on_speen_done(Event*);
     void on_add_player(Event*);
+    void on_add_player_done(spObject&);
     void on_add_question(Event*);
-    void on_rulet_speen_done(Event*);
+    void on_add_question_done(spObject&);
 
 public:
     MainScene();

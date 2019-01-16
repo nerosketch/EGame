@@ -6,12 +6,11 @@
  */
 
 #include "resources.h"
-#include "TextButton.h"
 #include "AddTask.h"
 #include "Task.h"
 
 
-AddTask::AddTask() : _text_question_title(new TextInput),
+AddTask::AddTask() : Dialog(), _text_question_title(new TextInput),
 _text_question_descr(new TextInput)
 {
     // Текст заголовок
@@ -32,6 +31,7 @@ _text_question_descr(new TextInput)
     text_input_name->setColor(Color::BlanchedAlmond);
     addChild(text_input_name);
     // Тут хранится текст
+    _text_question_title->init();
     _text_question_title->setPosition(x_pos, 67.f);
     addChild(_text_question_title);
 
@@ -43,19 +43,13 @@ _text_question_descr(new TextInput)
     text_input_descr->setColor(Color::BlanchedAlmond);
     addChild(text_input_descr);
     // Тут хранится текст
+    _text_question_descr->init();
     _text_question_descr->setPosition(x_pos, 122.f);
     _text_question_descr->setWidth(350.f);
     spTextField tf = _text_question_descr->getTextField();
     tf->setMultiline(true);
     tf->setWidth(_text_question_descr->getWidth());
     addChild(_text_question_descr);
-
-    // Кнопка ОК
-    spTextButton ok_btn = new TextButton("Сохранить");
-    ok_btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &AddTask::_on_ok_click));
-    ok_btn->setAnchor(0.5f, 0.5f);
-    ok_btn->setPosition(getWidth() / 2.f, getHeight() - ok_btn->getHeight());
-    addChild(ok_btn);
 }
 
 
@@ -67,14 +61,18 @@ AddTask::~AddTask()
 {}
 
 
-void AddTask::_on_ok_click(Event*)
+void AddTask::on_ok_click(Event* ev)
 {
+#ifdef DBG
     logs::messageln("AddTask::_on_ok_click");
+#endif
 
-    spTask task(new Task);
+    spTask task = new Task;
     task->setName(_text_question_title->getText());
     task->setDescription(_text_question_descr->getText());
-    Task::addTaskGlobal(task);
 
     detach();
+
+    ev->userData = task.get();
+    Dialog::on_ok_click(ev);
 }

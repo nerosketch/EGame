@@ -8,20 +8,16 @@
 #include "Player.h"
 
 
-list<spPlayer> Player::_global_players;
-
-
 Player::Player(const string& res_name) : Avatar(res_name),
-_name(res_name)
+_name(res_name), _angle(0.f), _tx(new TextField)
 {
     TextField::setDefaultFont(res::resources.getResFont("SanasoftHermes"));
-    spTextField tx = new TextField;
-    tx->setText(res_name);
-    tx->setAnchor(0.5f, 0.5f);
-    tx->setColor(Color::BurlyWood);
-    tx->setFontSize(14);
-    tx->setPosition(getWidth() / 2, getHeight());
-    addChild(tx);
+    _tx->setText(res_name);
+    _tx->setAnchor(0.5f, 0.5f);
+    _tx->setColor(Color::BurlyWood);
+    _tx->setFontSize(14);
+    _tx->setPosition(getWidth() / 2, getHeight());
+    addChild(_tx);
 }
 
 
@@ -36,23 +32,9 @@ Player::~Player()
 
 void Player::win()
 {
-    anim_win();
+#ifdef DBG
     logs::messageln("Player::win() name %s", _name.c_str());
-}
+#endif
 
-
-void Player::addPlayerGlobal(const spPlayer& p)
-{
-    for(const spPlayer& player : _global_players)
-    {
-        if(player == p)
-            return;
-    }
-    _global_players.push_back(p);
-}
-
-
-void Player::removePlayerGlobal(const spPlayer& p)
-{
-    _global_players.remove(p);
+    anim_win();
 }

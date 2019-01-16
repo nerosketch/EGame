@@ -20,8 +20,8 @@
 
     <set path="res/img/background"/>
     <atlas>
-        <image file="FQhyYkLevM0.png"/>
-        <image file="MpLDyxcQ8kY.png"/>
+        <image file="ftop.ru_587dd65125936.jpg"/>
+        <image file="89795.jpg"/>
         <image file="rulet.png"/>
     </atlas>
 </resources>

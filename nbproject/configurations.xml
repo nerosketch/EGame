@@ -161,6 +161,11 @@
         <ccTool>
           <developmentMode>5</developmentMode>
           <standard>8</standard>
+          <incDir>
+            <pElem>./lib/oxygine-framework/oxygine/src</pElem>
+            <pElem>./lib/oxygine-freetype/src</pElem>
+          </incDir>
+          <commandLine>`pkg-config --cflags sdl2`</commandLine>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -168,6 +173,27 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/egame</output>
+          <linkerAddLib>
+            <pElem>./lib/oxygine-framework/libs</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibFileItem>./lib/oxygine-framework/liboxygine-framework.a</linkerLibFileItem>
+            <linkerLibFileItem>./lib/oxygine-freetype/liboxygine-freetype.a</linkerLibFileItem>
+            <linkerLibFileItem>./lib/oxygine-framework/libs/SDL2main.lib</linkerLibFileItem>
+            <linkerLibLibItem>pthread</linkerLibLibItem>
+            <linkerLibLibItem>GL</linkerLibLibItem>
+            <linkerLibLibItem>GLU</linkerLibLibItem>
+            <linkerLibLibItem>glut</linkerLibLibItem>
+            <linkerLibLibItem>png</linkerLibLibItem>
+            <linkerLibLibItem>z</linkerLibLibItem>
+            <linkerLibLibItem>SDL2</linkerLibLibItem>
+            <linkerLibLibItem>jpeg</linkerLibLibItem>
+            <linkerLibLibItem>openal</linkerLibLibItem>
+            <linkerLibLibItem>freetype</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
       <item path="AddPlayerScene.cpp" ex="false" tool="1" flavor2="0">
       </item>

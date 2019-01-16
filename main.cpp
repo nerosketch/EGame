@@ -19,7 +19,10 @@ bool mainloop(Game& gstage)
 
     if(gstage.update())
     {
+#ifdef DBG
         logs::messageln("gstage.update() END");
+#endif
+
         return true;
     }
 
@@ -44,7 +47,9 @@ bool mainloop(Game& gstage)
 // Application entry point
 void run()
 {
+#ifdef DBG
     ObjectBase::__startTracingLeaks();
+#endif
 
     // Initialize Oxygine's internal stuff
     core::init_desc desc;
@@ -69,7 +74,9 @@ void run()
     getStage()->setSize(size);
 
     // DebugActor is a helper actor node. It shows FPS, memory usage and other useful stuff
+#ifdef DBG
     DebugActor::show();
+#endif
 
     if(!stage.init())
     {
@@ -109,7 +116,9 @@ void run()
      If we get here, the user has requested the Application to terminate.
      We dump and log all our created objects that have not been freed yet
     */
+#ifdef DBG
     ObjectBase::dumpCreatedObjects();
+#endif
 
     /*
     Let's clean up everything right now and call ObjectBase::dumpObjects() again.
@@ -117,7 +126,6 @@ void run()
     All actors/sprites are smart-pointer objects and don't need to be removed by hand.
     But now we want to delete it by hand.
     */
-
     stage.destroy();
 
 
@@ -128,9 +136,11 @@ void run()
 
     // The dump list should be empty by now,
     // we want to make sure that there aren't any memory leaks, so we call it again.
+#ifdef DBG
     ObjectBase::dumpCreatedObjects();
 
     ObjectBase::__stopTracingLeaks();
+#endif
     //end
 }
 

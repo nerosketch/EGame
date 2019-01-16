@@ -24,9 +24,6 @@ class Avatar : public Sprite
 {
 private:
     INHERITED(Sprite);
-    void _on_hover(Event*);
-    void _on_outx(Event*);
-    void _on_anim_win_done(Event*);
 
 public:
     Avatar(const string& res_name);

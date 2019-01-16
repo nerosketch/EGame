@@ -25,7 +25,7 @@ class AddPlayerScene : public Dialog
 private:
     void _on_select_left(Event*);
     void _on_select_right(Event*);
-    void _on_ok_click(Event*);
+    void on_ok_click(Event*) override;
     spSprite _ava_im;
     char _current_ava;
     spTextInput text_inp_name;

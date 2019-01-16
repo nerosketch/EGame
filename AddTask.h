@@ -21,7 +21,7 @@ DECLARE_SMART(AddTask, spAddTask);
 class AddTask : public Dialog
 {
 private:
-    void _on_ok_click(Event*);
+    void on_ok_click(Event*);
     spTextInput _text_question_title;
     spTextInput _text_question_descr;
 

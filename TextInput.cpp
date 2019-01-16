@@ -13,22 +13,10 @@ TextInput::TextInput() :
 _text(new TextField), _input(new InputText)
 {
     TextField::setDefaultFont(res::resources.getResFont("SanasoftHermes"));
+    _text->setFont(res::resources.getResFont("SanasoftHermes"));
     setResAnim(res::resources.getResAnim("panel"));
     setGuides(16.f, 16.f, 16.f, 16.f);
     setHeight(35.f);
-
-    _text->setFontSize(16);
-    _text->setPosition(10.f, 8.f);
-    _text->setText("Кликни для ввода");
-    _text->setColor(Color::Black);
-    setWidth(_text->getTextRect().size.x + 32.f);
-    _text->setWidth(getWidth());
-
-    _input->addEventListener(Event::COMPLETE, CLOSURE(this, &TextInput::_on_complete));
-    _input->addEventListener(InputText::EVENT_TEXT_CHANGED, CLOSURE(this, &TextInput::_on_text_changed));
-    addEventListener(TouchEvent::CLICK, CLOSURE(this, &TextInput::_on_click));
-
-    addChild(_text);
 }
 
 
@@ -40,17 +28,34 @@ TextInput::~TextInput()
 {}
 
 
-void TextInput::_on_complete(Event*)
+void TextInput::init()
 {
-    _input->stopAnyInput();
-    logs::messageln("stopAnyInput");
-}
+    _text->setFontSize(16);
+    _text->setPosition(10.f, 8.f);
+    _text->setText("Кликни для ввода");
+    _text->setColor(Color::Black);
+    setWidth(_text->getTextRect().size.x + 32.f);
+    _text->setWidth(getWidth());
 
+    _input->addEventListener(Event::COMPLETE, [&](Event*)
+    {
+#ifdef DBG
+        logs::messageln("stopAnyInput");
+#endif
+        _input->stopAnyInput();
+    });
 
-void TextInput::_on_click(Event*)
-{
-    _input->start(_text);
-    logs::messageln("Start input");
+    _input->addEventListener(InputText::EVENT_TEXT_CHANGED, CLOSURE(this, &TextInput::_on_text_changed));
+
+    addEventListener(TouchEvent::CLICK, [&](Event*)
+    {
+#ifdef DBG
+        logs::messageln("Start input");
+#endif
+        _input->start(_text);
+    });
+
+    addChild(_text);
 }
 
 
@@ -58,8 +63,7 @@ void TextInput::_on_text_changed(Event*)
 {
     //p_kev->data->keysym.scancode
     const Rect& r = _text->getTextRect();
-    logs::messageln("Text H %d", r.size.y);
-
+    
     if(r.size.x > 0)
         setWidth(r.size.x + 32.f);
     else

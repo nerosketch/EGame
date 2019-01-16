@@ -13,7 +13,8 @@
 
 Game::Game() :
     _viewport(Point(0, 0), core::getDisplaySize()),
-    _clearColor(32, 32, 32, 255)
+    //_clearColor(32, 32, 32, 255)
+    _clearColor(0, 0, 0, 0)
 {}
 
 Game::Game(const Game& o) :

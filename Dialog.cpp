@@ -6,6 +6,7 @@
  */
 
 #include "resources.h"
+#include "TextButton.h"
 #include "Dialog.h"
 
 
@@ -24,6 +25,13 @@ Dialog::Dialog()
     // Анимация открытия
     setScale(0.f);
     addTween(Sprite::TweenScale(1.f), 300, 1, false, 0, Tween::ease_outQuad);
+
+    // Кнопка ОК
+    spTextButton ok_btn = new TextButton("ОК");
+    ok_btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &Dialog::on_ok_click));
+    ok_btn->setAnchor(0.5f, 0.5f);
+    ok_btn->setPosition(getWidth() / 2.f, getHeight() - ok_btn->getHeight());
+    addChild(ok_btn);
 }
 
 
@@ -40,10 +48,18 @@ Dialog::~Dialog()
 void Dialog::_on_close_click(Event*)
 {
     addTween(Sprite::TweenScale(0.f), 300, 1, false, 0, Tween::ease_outQuad)
-        ->setDoneCallback(CLOSURE(this, &Dialog::_on_die));
+        ->setDoneCallback([&](Event*)
+        {
+            detach();
+        });
 }
 
-void Dialog::_on_die(Event*)
+
+void Dialog::on_ok_click(Event* ev)
 {
-    detach();
+    logs::messageln("user ptr %p", ev->userData);
+
+    spObject sob(static_cast<oxygine::Object*>(ev->userData));
+    if(_dc)
+        _dc(sob);
 }

@@ -54,8 +54,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=
-CXXFLAGS=
+CCFLAGS=`pkg-config --cflags sdl2` 
+CXXFLAGS=`pkg-config --cflags sdl2` 
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -64,11 +64,17 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=
+LDLIBSOPTIONS=-L./lib/oxygine-framework/libs ./lib/oxygine-framework/liboxygine-framework.a ./lib/oxygine-freetype/liboxygine-freetype.a ./lib/oxygine-framework/libs/SDL2main.lib -lpthread -lGL -lGLU -lglut -lpng -lz -lSDL2 -ljpeg -lopenal -lfreetype
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/egame
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/egame: ./lib/oxygine-framework/liboxygine-framework.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/egame: ./lib/oxygine-freetype/liboxygine-freetype.a
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/egame: ./lib/oxygine-framework/libs/SDL2main.lib
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/egame: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
@@ -77,67 +83,67 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/egame: ${OBJECTFILES}
 ${OBJECTDIR}/AddPlayerScene.o: AddPlayerScene.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AddPlayerScene.o AddPlayerScene.cpp
+	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AddPlayerScene.o AddPlayerScene.cpp
 
 ${OBJECTDIR}/AddTask.o: AddTask.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AddTask.o AddTask.cpp
+	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AddTask.o AddTask.cpp
 
 ${OBJECTDIR}/Avatar.o: Avatar.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Avatar.o Avatar.cpp
+	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Avatar.o Avatar.cpp
 
 ${OBJECTDIR}/Dialog.o: Dialog.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Dialog.o Dialog.cpp
+	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Dialog.o Dialog.cpp
 
 ${OBJECTDIR}/Game.o: Game.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Game.o Game.cpp
+	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Game.o Game.cpp
 
 ${OBJECTDIR}/MainScene.o: MainScene.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MainScene.o MainScene.cpp
+	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MainScene.o MainScene.cpp
 
 ${OBJECTDIR}/Player.o: Player.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Player.o Player.cpp
+	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Player.o Player.cpp
 
 ${OBJECTDIR}/Task.o: Task.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Task.o Task.cpp
+	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Task.o Task.cpp
 
 ${OBJECTDIR}/TextButton.o: TextButton.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TextButton.o TextButton.cpp
+	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TextButton.o TextButton.cpp
 
 ${OBJECTDIR}/TextInput.o: TextInput.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TextInput.o TextInput.cpp
+	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TextInput.o TextInput.cpp
 
 ${OBJECTDIR}/TextPanel.o: TextPanel.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TextPanel.o TextPanel.cpp
+	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TextPanel.o TextPanel.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/resources.o: resources.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/resources.o resources.cpp
+	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/resources.o resources.cpp
 
 # Subprojects
 .build-subprojects:
