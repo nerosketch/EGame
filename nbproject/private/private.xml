@@ -7,21 +7,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/ns/Projects/EGame/TextPanel.h</file>
-            <file>file:/home/ns/Projects/EGame/Game.cpp</file>
-            <file>file:/home/ns/Projects/EGame/TextInput.h</file>
-            <file>file:/home/ns/Projects/EGame/TextPanel.cpp</file>
-            <file>file:/home/ns/Projects/EGame/Dialog.cpp</file>
-            <file>file:/home/ns/Projects/EGame/Player.cpp</file>
-            <file>file:/home/ns/Projects/EGame/resources.cpp</file>
-            <file>file:/home/ns/Projects/EGame/Avatar.cpp</file>
             <file>file:/home/ns/Projects/EGame/main.cpp</file>
-            <file>file:/home/ns/Projects/EGame/TextButton.cpp</file>
-            <file>file:/home/ns/Projects/EGame/TextInput.cpp</file>
+            <file>file:/home/ns/Projects/EGame/res/res.xml</file>
             <file>file:/home/ns/Projects/EGame/AddPlayerScene.cpp</file>
             <file>file:/home/ns/Projects/EGame/AddTask.cpp</file>
-            <file>file:/home/ns/Projects/EGame/Task.cpp</file>
+            <file>file:/home/ns/Projects/EGame/Dialog.cpp</file>
+            <file>file:/home/ns/Projects/EGame/Dialog.h</file>
             <file>file:/home/ns/Projects/EGame/MainScene.cpp</file>
+            <file>file:/home/ns/Projects/EGame/AddTask.h</file>
+            <file>file:/home/ns/Projects/EGame/AddPlayerScene.h</file>
         </group>
     </open-files>
 </project-private>

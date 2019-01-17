@@ -15,11 +15,25 @@ const char* ava_names[] = {"niga", "girl1", "girl2", "boy1", "mem1"};
 
 AddPlayerScene::AddPlayerScene() : Dialog(), _ava_im(new Sprite),
 _current_ava(0), text_inp_name(new TextInput)
+{}
+
+
+AddPlayerScene::AddPlayerScene(const AddPlayerScene& o)
+{}
+
+
+AddPlayerScene::~AddPlayerScene()
+{}
+
+
+void AddPlayerScene::init()
 {
+    Dialog::init();
+
     // Текст заголовок
     spTextField title = new TextField;
     title->setText("Добавить игрока");
-    title->setPosition(getWidth() / 2.f - 80.f, 15.f);
+    title->setPosition(getWidth() / 2.f - 80.f, 65.f);
     title->setFontSize(24);
     title->setColor(Color::Crimson);
     addChild(title);
@@ -27,13 +41,13 @@ _current_ava(0), text_inp_name(new TextInput)
     // Ввод имени
     spTextField text_input_name = new TextField;
     text_input_name->setText("Впиши своё имя");
-    text_input_name->setPosition(25.f, 70.f);
+    text_input_name->setPosition(145.f, 180.f);
     text_input_name->setFontSize(21);
     text_input_name->setColor(Color::BlanchedAlmond);
     addChild(text_input_name);
     // Тут хранится текст
     text_inp_name->init();
-    text_inp_name->setPosition(175.f, 67.f);
+    text_inp_name->setPosition(text_input_name->getX() + 150, text_input_name->getY() - 3);
     addChild(text_inp_name);
 
     // Спрайт для выбора авки
@@ -59,13 +73,6 @@ _current_ava(0), text_inp_name(new TextInput)
     addChild(select_right_ava);
 }
 
-
-AddPlayerScene::AddPlayerScene(const AddPlayerScene& o)
-{}
-
-
-AddPlayerScene::~AddPlayerScene()
-{}
 
 
 void AddPlayerScene::_on_select_left(Event*)

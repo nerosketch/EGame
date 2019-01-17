@@ -134,9 +134,10 @@ void MainScene::on_speen_done(Event*)
 void MainScene::on_add_player(Event*)
 {
     spAddPlayerScene ap = new AddPlayerScene;
+    ap->init();
     //ap->setAnchor(0.5f, 0.5f);
     //ap->setPosition(getPosition()/2);
-    ap->setPosition(90.f, 70.f);
+    //ap->setPosition(90.f, 70.f);
     //ap->setSize(getSize() * 0.7f);
     ap->setDoneCallback(CLOSURE(this, &MainScene::on_add_player_done));
     addChild(ap);
@@ -181,7 +182,8 @@ void MainScene::on_add_player_done(spObject& ob)
 void MainScene::on_add_question(Event*)
 {
     spAddTask at = new AddTask;
-    at->setPosition(90.f, 70.f);
+    at->init();
+    //at->setPosition(90.f, 70.f);
     at->setDoneCallback(CLOSURE(this, &MainScene::on_add_question_done));
     addChild(at);
 }

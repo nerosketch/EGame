@@ -29,6 +29,9 @@ public:
     AddTask();
     AddTask(const AddTask&);
     virtual ~AddTask();
+
+    void init() override;
+
 };
 
 #endif /* ADDTASK_H */

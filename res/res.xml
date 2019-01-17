@@ -24,4 +24,14 @@
         <image file="89795.jpg"/>
         <image file="rulet.png"/>
     </atlas>
+
+    <set path="res/img/background/tech_panel"/>
+    <atlas>
+        <image file="tech_panel_bot.png"/>
+        <image file="tech_panel_top.png"/>
+        <image file="tech_panel_top_line.png"/>
+        <image file="tech_panel_c1.png"/>
+        <image file="tech_panel_c2.png"/>
+        <image file="tech_panel_c3.png"/>
+    </atlas>
 </resources>

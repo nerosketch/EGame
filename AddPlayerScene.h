@@ -35,6 +35,9 @@ public:
     AddPlayerScene();
     AddPlayerScene(const AddPlayerScene&);
     virtual ~AddPlayerScene();
+
+    void init() override;
+
 };
 
 #endif /* ADDPLAYERSCENE_H */

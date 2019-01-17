@@ -23,10 +23,16 @@ DECLARE_SMART(Dialog, spDialog);
 typedef Closure<void(spObject&)> DialogDoneCallback;
 
 
-class Dialog : public Box9Sprite
+class Dialog : public ColorRectSprite
 {
 private:
     void _on_close_click(Event*);
+    spSprite tech_panel_bot;
+    spSprite tech_panel_top;
+    spSprite tech_panel_top_line;
+    spSprite tech_panel_c1;
+    spSprite tech_panel_c2;
+    spSprite tech_panel_c3;
 
 protected:
     DialogDoneCallback _dc;
@@ -38,6 +44,8 @@ public:
     Dialog();
     Dialog(const Dialog& orig);
     virtual ~Dialog();
+
+    virtual void init();
 
     inline void setDoneCallback(const DialogDoneCallback& dc)
     {
