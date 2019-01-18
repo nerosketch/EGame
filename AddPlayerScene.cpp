@@ -40,7 +40,7 @@ void AddPlayerScene::init()
 
     // Ввод имени
     spTextField text_input_name = new TextField;
-    text_input_name->setText("Впиши своё имя");
+    text_input_name->setText("Впиши имя");
     text_input_name->setPosition(145.f, 180.f);
     text_input_name->setFontSize(21);
     text_input_name->setColor(Color::BlanchedAlmond);

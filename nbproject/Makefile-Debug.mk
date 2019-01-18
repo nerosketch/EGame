@@ -36,12 +36,12 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/AddPlayerScene.o \
-	${OBJECTDIR}/AddTask.o \
 	${OBJECTDIR}/Avatar.o \
 	${OBJECTDIR}/Dialog.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/MainScene.o \
 	${OBJECTDIR}/Player.o \
+	${OBJECTDIR}/SceneTasks.o \
 	${OBJECTDIR}/Task.o \
 	${OBJECTDIR}/TextButton.o \
 	${OBJECTDIR}/TextInput.o \
@@ -85,11 +85,6 @@ ${OBJECTDIR}/AddPlayerScene.o: AddPlayerScene.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -DDBG -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AddPlayerScene.o AddPlayerScene.cpp
 
-${OBJECTDIR}/AddTask.o: AddTask.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -DDBG -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AddTask.o AddTask.cpp
-
 ${OBJECTDIR}/Avatar.o: Avatar.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -114,6 +109,11 @@ ${OBJECTDIR}/Player.o: Player.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -DDBG -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Player.o Player.cpp
+
+${OBJECTDIR}/SceneTasks.o: SceneTasks.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -DDBG -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SceneTasks.o SceneTasks.cpp
 
 ${OBJECTDIR}/Task.o: Task.cpp
 	${MKDIR} -p ${OBJECTDIR}

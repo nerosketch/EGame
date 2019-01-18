@@ -7,7 +7,7 @@
 #include "resources.h"
 #include "AddPlayerScene.h"
 #include "MainScene.h"
-#include "AddTask.h"
+#include "SceneTasks.h"
 #include "Player.h"
 
 
@@ -181,11 +181,11 @@ void MainScene::on_add_player_done(spObject& ob)
 
 void MainScene::on_add_question(Event*)
 {
-    spAddTask at = new AddTask;
-    at->init();
+    spSceneTasks st = new SceneTasks;
+    st->init();
     //at->setPosition(90.f, 70.f);
-    at->setDoneCallback(CLOSURE(this, &MainScene::on_add_question_done));
-    addChild(at);
+    st->setDoneCallback(CLOSURE(this, &MainScene::on_add_question_done));
+    addChild(st);
 }
 
 

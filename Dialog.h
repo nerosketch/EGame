@@ -51,7 +51,10 @@ public:
     {
         _dc = dc;
     }
-
+    inline void closeSendClick()
+    {
+        _on_close_click(nullptr);
+    }
 };
 
 #endif /* DIALOG_H */

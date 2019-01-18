@@ -39,7 +39,7 @@ void Dialog::init()
 
     // Анимация открытия
     //setScale(0.f);
-    addTween(Sprite::TweenColor(0x101010de), 900, 1, false, 0, Tween::ease_outQuad);;
+    addTween(Sprite::TweenColor(0x101010ef), 900, 1, false, 0, Tween::ease_outQuad);;
 
     tech_panel_bot->setResAnim(res::resources.getResAnim("tech_panel_bot"));
     tech_panel_bot->setPosition(
@@ -96,10 +96,7 @@ void Dialog::init()
 
 void Dialog::_on_close_click(Event*)
 {
-    addTween(TweenQueue::create(
-        createTween(TweenDummy(), 1000),
-        createTween(Sprite::TweenColor(Color::Zero), 400, 1, false, 0, Tween::ease_outQuad))
-    )
+    addTween(Sprite::TweenColor(Color::Zero), 400, 1, false, 1000, Tween::ease_outQuad)
     ->setDoneCallback([&](Event*)
     {
         detach();
@@ -134,8 +131,8 @@ void Dialog::_on_close_click(Event*)
                 spr->addTween(Sprite::TweenPosition(c_pos), 1000, 1, false, 0, Tween::ease_outQuad);
             });
     }
-    
 
+    addTween(Sprite::TweenAlpha(0), 400, 1, false, 1000, Tween::ease_outQuad);
 }
 
 

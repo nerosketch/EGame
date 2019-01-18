@@ -5,12 +5,12 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>AddPlayerScene.h</itemPath>
-      <itemPath>AddTask.h</itemPath>
       <itemPath>Avatar.h</itemPath>
       <itemPath>Dialog.h</itemPath>
       <itemPath>Game.h</itemPath>
       <itemPath>MainScene.h</itemPath>
       <itemPath>Player.h</itemPath>
+      <itemPath>SceneTasks.h</itemPath>
       <itemPath>Task.h</itemPath>
       <itemPath>TextButton.h</itemPath>
       <itemPath>TextInput.h</itemPath>
@@ -27,12 +27,12 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>AddPlayerScene.cpp</itemPath>
-      <itemPath>AddTask.cpp</itemPath>
       <itemPath>Avatar.cpp</itemPath>
       <itemPath>Dialog.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
       <itemPath>MainScene.cpp</itemPath>
       <itemPath>Player.cpp</itemPath>
+      <itemPath>SceneTasks.cpp</itemPath>
       <itemPath>Task.cpp</itemPath>
       <itemPath>TextButton.cpp</itemPath>
       <itemPath>TextInput.cpp</itemPath>
@@ -97,10 +97,6 @@
       </item>
       <item path="AddPlayerScene.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="AddTask.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="AddTask.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Avatar.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Avatar.h" ex="false" tool="3" flavor2="0">
@@ -120,6 +116,10 @@
       <item path="Player.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SceneTasks.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SceneTasks.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Task.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -199,10 +199,6 @@
       </item>
       <item path="AddPlayerScene.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="AddTask.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="AddTask.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Avatar.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Avatar.h" ex="false" tool="3" flavor2="0">
@@ -222,6 +218,10 @@
       <item path="Player.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SceneTasks.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SceneTasks.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Task.cpp" ex="false" tool="1" flavor2="0">
       </item>
