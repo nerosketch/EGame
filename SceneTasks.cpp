@@ -48,6 +48,7 @@ public:
 
         descr->setY(th + 3.f);
     }
+    TaskListItem(const string& t, const string& d) : TaskListItem(t.c_str(), d.c_str()){}
 
     TaskListItem(const TaskListItem& o) : title(o.title), descr(o.descr){}
     virtual ~TaskListItem(){}
@@ -89,9 +90,22 @@ void SceneTasks::init()
     title->setFontSize(24);
     title->setColor(Color::Crimson);
     addChild(title);
-    
+
+    /*
+    if(!Task::loadAll())
+    {
+        logs::messageln("Error while loading tasks");
+        return;
+    }
+
+    for(const spTask& st : Task::getTasks())
+    {
+        spTaskListItem list_item = new TaskListItem(st->getTitle(), st->getDescription());
+        
+    }
+     */
     // Загруж
-    const char txt[] = "Lore o iasoi asd oiadoi asiouasduiyasdoiaspodPIODAOUIPd A O iASOI AOi ASOI UsioUASPO UAsPOA ISAPO sASOI UAOsiu ASPOUI Aspo APOUDPOI D And again";
+    /*const char txt[] = "Lore o iasoi asd oiadoi asiouasduiyasdoiaspodPIODAOUIPd A O iASOI AOi ASOI UsioUASPO UAsPOA ISAPO sASOI UAOsiu ASPOUI Aspo APOUDPOI D And again";
     std::vector<spTaskListItem> tsks = {
         new TaskListItem("Первый", txt),
         new TaskListItem("Новый", txt),
@@ -116,7 +130,13 @@ void SceneTasks::init()
         new TaskListItem("Новый", txt),
         new TaskListItem("Новый", txt),
         new TaskListItem("Последний", txt)
-    };
+    };*/
+
+    if(!Task::loadAll())
+    {
+        logs::messageln("Error while loading tasks");
+        return;
+    }
 
     // контейнер, содержащий список вопросов
     //spColorRectSprite task_list_container = new ColorRectSprite;
@@ -124,26 +144,25 @@ void SceneTasks::init()
     spActor task_list_container = new Actor;
     float max_h = 0.f;
     float max_w = 0.f;
-    for(spTaskListItem& tl : tsks)
+    float h_pos = 20.f;
+    for(const spTask& st : Task::getTasks())
     {
-        if(tl->getWidth() > max_w)
-            max_w = tl->getWidth();
-        max_h += tl->getHeight();
+        spTaskListItem list_item = new TaskListItem(st->getTitle(), st->getDescription());
+
+        if(list_item->getWidth() > max_w)
+            max_w = list_item->getWidth();
+        max_h += list_item->getHeight();
+
+        // настраиваем элементы контейнера
+        list_item->setY(h_pos);
+        list_item->setX(10.f);
+        h_pos += list_item->getHeight() + 50;
+        task_list_container->addChild(list_item);
     }
     task_list_container->setSize(max_w + 50.f, max(
-        max_h + 50 * tsks.size(),
+        max_h + 50 * Task::getTasks().size(),
         getHeight()
     ));
-
-    // настраиваем элементы контейнера
-    float h_pos = 20.f;
-    for(spTaskListItem& tl : tsks)
-    {
-        tl->setY(h_pos);
-        tl->setX(10.f);
-        h_pos += tl->getHeight() + 50;
-        task_list_container->addChild(tl);
-    }
 
     // Слайдер с контейнером списка вопросов
     spBox9Sprite slider_decor = new Box9Sprite;

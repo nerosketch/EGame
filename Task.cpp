@@ -9,7 +9,7 @@
 #include "Task.h"
 
 
-#define FNAME          "data.xml"
+#define FNAME          "res/data.xml"
 
 
 using namespace pugi;
@@ -18,13 +18,13 @@ using namespace pugi;
 task_list Task::_tasks;
 
 
-Task::Task() : _title(), _description(), _uid(0)
+Task::Task() : _title(), _description()
 {
 }
 
 
 Task::Task(const Task& o) : _title(o._title),
-_description(o._description), _uid(o._uid)
+_description(o._description)
 {
 }
 
@@ -34,7 +34,7 @@ Task::~Task()
 }
 
 
-bool check_node_exist(const uint uid, const task_list& arr_p)
+/*bool check_node_exist(const uint uid, const task_list& arr_p)
 {
     for(const spTask& i : arr_p)
     {
@@ -42,14 +42,14 @@ bool check_node_exist(const uint uid, const task_list& arr_p)
             return true;
     }
     return false;
-}
+}*/
 
 
-void Task::saveAll()
+/*void Task::saveAll()
 {
     xml_document doc;
 
-    const char* root_chr = "root";
+    const char* root_chr = "egame";
 
     if(!doc.load_file(FNAME))
     {
@@ -69,11 +69,11 @@ void Task::saveAll()
         xml_node node_task = root.append_child("task");
         node_task.text() = t->_description.c_str();
         node_task.append_attribute("title") = t->_title.c_str();
-        node_task.append_attribute("id") = t->getUid();
+        //node_task.append_attribute("id") = t->getUid();
     }
 
     doc.save_file(FNAME);
-}
+}*/
 
 
 bool Task::loadAll()
@@ -85,18 +85,16 @@ bool Task::loadAll()
     if(!result)
         return false;
 
-    for(const xml_node& nd : doc.child("root").children())
+    for(const xml_node& nd : doc.child("egame").children())
     {
-        const uint uid = nd.attribute("id").as_uint();
-
-        if(check_node_exist(uid, _tasks))
+        /*if(check_node_exist(uid, _tasks))
         {
             //cout << "task with uid=" << uid << " exists, continue" << endl;
             continue;
-        }
+        }*/
 
         spTask t = new Task;
-        t->setUid(uid);
+        //t->setUid(uid);
         t->_title = nd.attribute("title").as_string();
         t->_description = nd.text().as_string();
 

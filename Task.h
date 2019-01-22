@@ -26,7 +26,7 @@ class Task : public oxygine::Object
 private:
     string _title;
     string _description;
-    uint _uid;
+    //uint _uid;
     static task_list _tasks;
 
 public:
@@ -39,11 +39,15 @@ public:
     inline const string& getTitle() const { return _title; }
     inline void setDescription(const string& descr){ _description = descr; }
     inline const string& getDescription() const { return _description; }
-    inline void setUid(const uint uid){ _uid = uid; }
-    inline const uint getUid() const { return _uid; }
+    //inline void setUid(const uint uid){ _uid = uid; }
+    //inline const uint getUid() const { return _uid; }
 
-    static void saveAll();
+    //static void saveAll();
     static bool loadAll();
+    static task_list& getTasks()
+    {
+        return _tasks;
+    }
 };
 
 
