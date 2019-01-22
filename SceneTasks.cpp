@@ -132,12 +132,6 @@ void SceneTasks::init()
         new TaskListItem("Последний", txt)
     };*/
 
-    if(!Task::loadAll())
-    {
-        logs::messageln("Error while loading tasks");
-        return;
-    }
-
     // контейнер, содержащий список вопросов
     //spColorRectSprite task_list_container = new ColorRectSprite;
     //task_list_container->setColor(0xff0000ab);

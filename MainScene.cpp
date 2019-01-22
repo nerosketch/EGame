@@ -9,11 +9,12 @@
 #include "MainScene.h"
 #include "SceneTasks.h"
 #include "Player.h"
+#include "Task.h"
 
 
 MainScene::MainScene() :
 arrow(new Sprite), rulet(new Sprite),
-_angle(0.f)
+_angle(0.f), p_question_panel(nullptr)
 {}
 
 
@@ -73,6 +74,10 @@ void MainScene::init()
     add_question_btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &MainScene::on_add_question));
     addChild(add_question_btn);
 
+    if(!Task::loadAll())
+    {
+        logs::messageln("Error while loading tasks");
+    }
 }
 
 
@@ -92,6 +97,11 @@ void MainScene::on_click_run(Event*)
         {
             rulet->setRotation(0.f);
         });
+
+    if(p_question_panel != nullptr)
+    {
+        p_question_panel->detach();
+    }
 }
 
 
@@ -124,6 +134,18 @@ void MainScene::on_speen_done(Event*)
         if(arrow_angle > a && arrow_angle < b)
         {
             player->win();
+
+            const spTask& t = Task::getRandom();
+            spTextPanel task_panel = new TextPanel(t->getDescription());
+            task_panel->setAnchor(0.5f, 0.5f);
+            task_panel->setPosition(getSize() / 2);
+            task_panel->setScale(3.f);
+            task_panel->setOnDieEvent([&](Event*){
+                p_question_panel = nullptr;
+            });
+            p_question_panel = task_panel.get();
+            addChild(task_panel);
+
             break;
         }
     }
@@ -184,12 +206,12 @@ void MainScene::on_add_question(Event*)
     spSceneTasks st = new SceneTasks;
     st->init();
     //at->setPosition(90.f, 70.f);
-    st->setDoneCallback(CLOSURE(this, &MainScene::on_add_question_done));
+    //st->setDoneCallback(CLOSURE(this, &MainScene::on_add_question_done));
     addChild(st);
 }
 
 
-void MainScene::on_add_question_done(spObject&)
+/*void MainScene::on_add_question_done(spObject&)
 {
     logs::messageln("::Question done");
-}
+}*/

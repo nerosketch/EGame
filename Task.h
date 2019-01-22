@@ -8,7 +8,7 @@
 #ifndef TASK_H
 #define TASK_H
 
-#include <list>
+#include <vector>
 #include <string>
 #include <oxygine-framework.h>
 
@@ -18,7 +18,7 @@ using namespace std;
 
 DECLARE_SMART(Task, spTask);
 
-typedef list<spTask> task_list;
+typedef vector<spTask> task_list;
 
 
 class Task : public oxygine::Object
@@ -48,6 +48,7 @@ public:
     {
         return _tasks;
     }
+    static const spTask& getRandom();
 };
 
 

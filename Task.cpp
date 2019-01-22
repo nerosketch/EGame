@@ -5,11 +5,13 @@
  * Created on January 13, 2019, 10:36 PM
  */
 
+#include <cstdlib>
+#include <ctime>
 #include <ox/pugixml.hpp>
 #include "Task.h"
 
 
-#define FNAME          "res/data.xml"
+#define FNAME                   "res/data.xml"
 
 
 using namespace pugi;
@@ -85,6 +87,8 @@ bool Task::loadAll()
     if(!result)
         return false;
 
+    _tasks.clear();
+
     for(const xml_node& nd : doc.child("egame").children())
     {
         /*if(check_node_exist(uid, _tasks))
@@ -102,4 +106,16 @@ bool Task::loadAll()
     }
 
     return true;
+}
+
+
+const spTask& Task::getRandom()
+{
+    srand( time(0) );
+
+    auto it = _tasks.cbegin();
+
+    int random = rand() % _tasks.size();
+
+    return *(it + random);
 }

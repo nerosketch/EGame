@@ -12,11 +12,29 @@
 #include <list>
 #include <oxygine-framework.h>
 #include "flags.h"
-#include "Avatar.h"
 
 
 using namespace oxygine;
 using namespace std;
+
+
+DECLARE_SMART(Avatar, spAvatar);
+
+
+class Avatar : public Sprite
+{
+private:
+    INHERITED(Sprite);
+
+public:
+    Avatar(const string& res_name);
+    Avatar(const Avatar& orig);
+    virtual ~Avatar();
+
+    // запускаем когда победил
+    void anim_win();
+};
+
 
 
 DECLARE_SMART(Player, spPlayer);
