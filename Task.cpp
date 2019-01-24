@@ -4,9 +4,7 @@
  * 
  * Created on January 13, 2019, 10:36 PM
  */
-
-#include <cstdlib>
-#include <ctime>
+#include <random>
 #include <ox/pugixml.hpp>
 #include "Task.h"
 
@@ -111,11 +109,11 @@ bool Task::loadAll()
 
 const spTask& Task::getRandom()
 {
-    srand( time(0) );
+    std::random_device rd{};
+    std::default_random_engine e{rd()};
+    std::uniform_int_distribution<std::size_t> d{0, _tasks.size()};
 
     auto it = _tasks.cbegin();
 
-    int random = rand() % _tasks.size();
-
-    return *(it + random);
+    return *(it + d(e));
 }
