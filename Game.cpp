@@ -6,7 +6,7 @@
  */
 
 #include <oxygine-framework.h>
-#include "ResFontFT.h"
+#include <ResFontFT.h>
 #include "resources.h"
 #include "Game.h"
 

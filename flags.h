@@ -8,6 +8,12 @@
 #ifndef FLAGS_H
 #define FLAGS_H
 
+#include <cstdint>
+
+#ifdef WIN32
+#define uint UINT
+#endif
+
 
 // Включаем звук
 //#define SOUND_ENABLE

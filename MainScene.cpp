@@ -81,7 +81,7 @@ void MainScene::init()
 
     const uint avs_count = _players.size();
     const float round = MATH_PI * 2;
-    const float part = round / avs_count;
+    const float part = float(round / avs_count);
     float angle = 0.f;
     const Vector2& center_pos = rulet->getPosition();
     Vector2 r;
@@ -128,7 +128,7 @@ void MainScene::on_speen_done(Event*)
     float arrow_angle;
     if(_angle > one_round)
     {
-        const int loop_count = _angle / one_round;
+        const int loop_count = static_cast<const int>(_angle / one_round);
         arrow_angle = _angle - loop_count * one_round;
     }
     else
