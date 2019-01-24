@@ -12,6 +12,7 @@
 #include <oxygine-framework.h>
 #include "TextInput.h"
 #include "Dialog.h"
+#include "flags.h"
 
 
 using namespace oxygine;

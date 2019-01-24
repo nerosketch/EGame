@@ -36,7 +36,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/AddPlayerScene.o \
-	${OBJECTDIR}/Avatar.o \
 	${OBJECTDIR}/Dialog.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/MainScene.o \
@@ -84,11 +83,6 @@ ${OBJECTDIR}/AddPlayerScene.o: AddPlayerScene.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AddPlayerScene.o AddPlayerScene.cpp
-
-${OBJECTDIR}/Avatar.o: Avatar.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Avatar.o Avatar.cpp
 
 ${OBJECTDIR}/Dialog.o: Dialog.cpp
 	${MKDIR} -p ${OBJECTDIR}

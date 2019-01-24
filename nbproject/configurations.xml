@@ -5,7 +5,6 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>AddPlayerScene.h</itemPath>
-      <itemPath>Avatar.h</itemPath>
       <itemPath>Dialog.h</itemPath>
       <itemPath>Game.h</itemPath>
       <itemPath>MainScene.h</itemPath>
@@ -15,6 +14,7 @@
       <itemPath>TextButton.h</itemPath>
       <itemPath>TextInput.h</itemPath>
       <itemPath>TextPanel.h</itemPath>
+      <itemPath>base.h</itemPath>
       <itemPath>flags.h</itemPath>
       <itemPath>resources.h</itemPath>
     </logicalFolder>
@@ -27,7 +27,6 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>AddPlayerScene.cpp</itemPath>
-      <itemPath>Avatar.cpp</itemPath>
       <itemPath>Dialog.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
       <itemPath>MainScene.cpp</itemPath>
@@ -97,10 +96,6 @@
       </item>
       <item path="AddPlayerScene.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Avatar.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Avatar.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Dialog.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Dialog.h" ex="false" tool="3" flavor2="0">
@@ -136,6 +131,8 @@
       <item path="TextPanel.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TextPanel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="base.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="flags.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -199,10 +196,6 @@
       </item>
       <item path="AddPlayerScene.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Avatar.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Avatar.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Dialog.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Dialog.h" ex="false" tool="3" flavor2="0">
@@ -238,6 +231,8 @@
       <item path="TextPanel.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="TextPanel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="base.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="flags.h" ex="false" tool="3" flavor2="0">
       </item>

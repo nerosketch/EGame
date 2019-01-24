@@ -10,6 +10,7 @@
 
 #include <string>
 #include <oxygine-framework.h>
+#include "flags.h"
 
 
 using namespace std;
@@ -31,9 +32,11 @@ protected:
     EventCallback _die_event;
 
 public:
-    TextPanel(const string& text);
+    TextPanel();
     TextPanel(const TextPanel& orig);
     virtual ~TextPanel();
+
+    void init(const string& text);
 
     void setText(const string& text);
 

@@ -4,6 +4,7 @@
  * 
  * Created on January 12, 2019, 11:03 PM
  */
+#include <ctime>
 #include "resources.h"
 #include "AddPlayerScene.h"
 #include "MainScene.h"
@@ -14,7 +15,7 @@
 
 MainScene::MainScene() :
 arrow(new Sprite), rulet(new Sprite),
-_angle(0.f), p_question_panel(nullptr)
+_win_user_index(0), _spin_round_count(0), p_question_panel(nullptr)
 {}
 
 
@@ -87,7 +88,16 @@ void MainScene::on_click_run(Event*)
     logs::messageln("MainScene::click_run");
 #endif
 
-    _angle = scalar::randFloat(0.f, (MATH_PI*2.f)*8);
+    srand(time(nullptr));
+    _win_user_index = RANDOM_RANGE(0, _players.size() - 1);
+    _spin_round_count = RANDOM_RANGE(1, 6);
+    
+    const spPlayer& pl = _players[_win_user_index];
+    const float _angle = pl->getAnglePos() + (_spin_round_count * MATH_PI*2.f);
+
+#ifdef DBG
+    logs::messageln("win_user_index: %d", _win_user_index);
+#endif
 
     arrow->addTween(Sprite::TweenRotation(_angle), 5000, 1, false, 0, Tween::ease_inOutBounce)
         ->setDoneCallback(CLOSURE(this, &MainScene::on_speen_done));
@@ -109,47 +119,26 @@ void MainScene::on_speen_done(Event*)
 {
     // Устанавливаем угол поворота стрелки такой, на котором закончилась анимация
     const float one_round = MATH_PI*2.f;
-    float arrow_angle;
-    if(_angle > one_round)
-    {
-        const int loop_count = static_cast<const int>(_angle / one_round);
-        arrow_angle = _angle - loop_count * one_round;
-    }
-    else
-    {
-        arrow_angle = _angle;
-    }
-    arrow->setRotation(arrow_angle);
+    const float full_spins_angle = _spin_round_count * one_round;
+    arrow->setRotation(arrow->getRotation() - full_spins_angle);
 
     // Выясняем кто победил
     // Сравниваем угол поворота стрелки с углом положения игрока
-    const float part = one_round / _players.size();
+    spPlayer& player = _players[_win_user_index];
+    player->win();
 
-    for(spPlayer& player : _players)
-    {
-        const float player_angle = player->getAnglePos();
-        const float a = player_angle - part / 2;
-        const float b = player_angle + part / 2;
-
-        if(arrow_angle > a && arrow_angle < b)
-        {
-            player->win();
-
-            const spTask& t = Task::getRandom();
-            spTextPanel task_panel = new TextPanel(t->getDescription());
-            task_panel->setAnchor(0.5f, 0.5f);
-            task_panel->setPosition(getSize() / 2);
-            task_panel->setScale(3.f);
-            task_panel->setOnDieEvent([&](Event*){
-                p_question_panel = nullptr;
-            });
-            p_question_panel = task_panel.get();
-            addChild(task_panel);
-
-            break;
-        }
-    }
-
+    // Выводим вопрос
+    const spTask& t = Task::getRandom();
+    spTextPanel task_panel = new TextPanel;
+    task_panel->setAnchor(0.5f, 0.5f);
+    task_panel->setPosition(getSize() / 2);
+    task_panel->setScale(3.f);
+    task_panel->init(t->getDescription());
+    task_panel->setOnDieEvent([&](Event*){
+        p_question_panel = nullptr;
+    });
+    p_question_panel = task_panel.get();
+    addChild(task_panel);
 }
 
 
@@ -157,10 +146,6 @@ void MainScene::on_add_player(Event*)
 {
     spAddPlayerScene ap = new AddPlayerScene;
     ap->init();
-    //ap->setAnchor(0.5f, 0.5f);
-    //ap->setPosition(getPosition()/2);
-    //ap->setPosition(90.f, 70.f);
-    //ap->setSize(getSize() * 0.7f);
     ap->setDoneCallback(CLOSURE(this, &MainScene::on_add_player_done));
     addChild(ap);
 }
@@ -205,13 +190,5 @@ void MainScene::on_add_question(Event*)
 {
     spSceneTasks st = new SceneTasks;
     st->init();
-    //at->setPosition(90.f, 70.f);
-    //st->setDoneCallback(CLOSURE(this, &MainScene::on_add_question_done));
     addChild(st);
 }
-
-
-/*void MainScene::on_add_question_done(spObject&)
-{
-    logs::messageln("::Question done");
-}*/

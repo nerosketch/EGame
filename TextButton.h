@@ -10,6 +10,7 @@
 
 #include <string>
 #include <oxygine-framework.h>
+#include "flags.h"
 
 using namespace oxygine;
 using namespace std;

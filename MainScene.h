@@ -8,7 +8,7 @@
 #ifndef MAINSCENE_H
 #define MAINSCENE_H
 
-#include <list>
+#include <vector>
 #include <oxygine-framework.h>
 #include "flags.h"
 #include "TextButton.h"
@@ -22,14 +22,15 @@ using namespace oxygine;
 DECLARE_SMART(MainScene, spMainScene);
 
 
-class MainScene : public Stage
+class MainScene : public Actor
 {
 private:
     INHERITED(Stage);
     spSprite arrow;
     spSprite rulet;
-    float _angle;
-    std::list<spPlayer> _players;
+    uint _win_user_index;
+    uint _spin_round_count;
+    std::vector<spPlayer> _players;
     TextPanel *p_question_panel;
 
     void on_click_run(Event*);
@@ -37,7 +38,6 @@ private:
     void on_add_player(Event*);
     void on_add_player_done(spObject&);
     void on_add_question(Event*);
-    //void on_add_question_done(spObject&);
 
 public:
     MainScene();

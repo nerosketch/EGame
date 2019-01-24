@@ -4,7 +4,6 @@
  * 
  * Created on January 13, 2019, 10:36 PM
  */
-#include <random>
 #include <ox/pugixml.hpp>
 #include "Task.h"
 
@@ -34,48 +33,6 @@ Task::~Task()
 }
 
 
-/*bool check_node_exist(const uint uid, const task_list& arr_p)
-{
-    for(const spTask& i : arr_p)
-    {
-        if(i->getUid() == uid)
-            return true;
-    }
-    return false;
-}*/
-
-
-/*void Task::saveAll()
-{
-    xml_document doc;
-
-    const char* root_chr = "egame";
-
-    if(!doc.load_file(FNAME))
-    {
-        // создадим root ноду
-        doc.append_child(root_chr);
-    }
-
-    xml_node root = doc.child(root_chr);
-
-    for(const spTask& t : _tasks)
-    {
-        if(check_node_exist(t->getUid(), _tasks))
-        {
-            continue;
-        }
-
-        xml_node node_task = root.append_child("task");
-        node_task.text() = t->_description.c_str();
-        node_task.append_attribute("title") = t->_title.c_str();
-        //node_task.append_attribute("id") = t->getUid();
-    }
-
-    doc.save_file(FNAME);
-}*/
-
-
 bool Task::loadAll()
 {
     xml_document doc;
@@ -89,14 +46,7 @@ bool Task::loadAll()
 
     for(const xml_node& nd : doc.child("egame").children())
     {
-        /*if(check_node_exist(uid, _tasks))
-        {
-            //cout << "task with uid=" << uid << " exists, continue" << endl;
-            continue;
-        }*/
-
         spTask t = new Task;
-        //t->setUid(uid);
         t->_title = nd.attribute("title").as_string();
         t->_description = nd.text().as_string();
 
@@ -109,11 +59,7 @@ bool Task::loadAll()
 
 const spTask& Task::getRandom()
 {
-    std::random_device rd{};
-    std::default_random_engine e{rd()};
-    std::uniform_int_distribution<std::size_t> d{0, _tasks.size()};
+    const int rk = RANDOM_RANGE(0, _tasks.size() - 1);
 
-    auto it = _tasks.cbegin();
-
-    return *(it + d(e));
+    return _tasks[rk];
 }
