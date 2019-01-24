@@ -8,20 +8,16 @@
 #include "Player.h"
 
 
-list<spPlayer> Player::_global_players;
-
-
 Player::Player(const string& res_name) : Avatar(res_name),
-_name(res_name)
+_name(res_name), _angle(0.f), _tx(new TextField)
 {
     TextField::setDefaultFont(res::resources.getResFont("SanasoftHermes"));
-    spTextField tx = new TextField;
-    tx->setText(res_name);
-    tx->setAnchor(0.5f, 0.5f);
-    tx->setColor(Color::BurlyWood);
-    tx->setFontSize(14);
-    tx->setPosition(getWidth() / 2, getHeight());
-    addChild(tx);
+    _tx->setText(res_name);
+    _tx->setAnchor(0.5f, 0.5f);
+    _tx->setColor(Color::BurlyWood);
+    _tx->setFontSize(14);
+    _tx->setPosition(getWidth() / 2, getHeight());
+    addChild(_tx);
 }
 
 
@@ -36,23 +32,52 @@ Player::~Player()
 
 void Player::win()
 {
-    anim_win();
+#ifdef DBG
     logs::messageln("Player::win() name %s", _name.c_str());
+#endif
+
+    anim_win();
 }
 
 
-void Player::addPlayerGlobal(const spPlayer& p)
+
+
+
+
+
+
+
+Avatar::Avatar(const string& res_name)
 {
-    for(const spPlayer& player : _global_players)
+    setResAnim(res::resources.getResAnim(res_name));
+
+    addEventListener(TouchEvent::OVER, [&](Event*)
     {
-        if(player == p)
-            return;
-    }
-    _global_players.push_back(p);
+        addTween(Actor::TweenScale(1.4f), 40);
+    });
+
+    addEventListener(TouchEvent::OUTX, [&](Event*)
+    {
+        addTween(Actor::TweenScale(1.f), 40);
+    });
+
+    setAnchor(0.5f, 0.5f);
 }
 
 
-void Player::removePlayerGlobal(const spPlayer& p)
+Avatar::Avatar(const Avatar& o)
+{}
+
+
+Avatar::~Avatar()
+{}
+
+
+void Avatar::anim_win()
 {
-    _global_players.remove(p);
+    addTween(Actor::TweenRotation(MATH_PI*4), 2000)
+            ->setDoneCallback([&](Event*)
+            {
+                setRotation(0.f);
+            });
 }

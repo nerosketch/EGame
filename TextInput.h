@@ -24,8 +24,6 @@ class TextInput : public Box9Sprite
 private:
     INHERITED(Box9Sprite);
     void _on_text_changed(Event*);
-    void _on_complete(Event*);
-    void _on_click(Event*);
 
 protected:
     spTextField _text;
@@ -35,6 +33,8 @@ public:
     TextInput();
     TextInput(const TextInput& orig);
     virtual ~TextInput();
+
+    void init();
 
     inline const string& getText()
     {

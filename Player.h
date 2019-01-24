@@ -12,11 +12,29 @@
 #include <list>
 #include <oxygine-framework.h>
 #include "flags.h"
-#include "Avatar.h"
 
 
 using namespace oxygine;
 using namespace std;
+
+
+DECLARE_SMART(Avatar, spAvatar);
+
+
+class Avatar : public Sprite
+{
+private:
+    INHERITED(Sprite);
+
+public:
+    Avatar(const string& res_name);
+    Avatar(const Avatar& orig);
+    virtual ~Avatar();
+
+    // запускаем когда победил
+    void anim_win();
+};
+
 
 
 DECLARE_SMART(Player, spPlayer);
@@ -26,7 +44,7 @@ class Player : public Avatar
 private:
     string _name;
     float _angle;
-    static list<spPlayer> _global_players;
+    spTextField _tx;
 
 public:
     Player(const string& res_name);
@@ -46,6 +64,7 @@ public:
     inline void setName(const string& name)
     {
         _name = name;
+        _tx->setText(name);
     }
 
     inline const string getName() const
@@ -55,13 +74,6 @@ public:
 
     // включаем когда выигрываем
     void win();
-
-    static void addPlayerGlobal(const spPlayer&);
-    static void removePlayerGlobal(const spPlayer&);
-    inline static list<spPlayer>& getPlayers()
-    {
-        return _global_players;
-    }
 };
 
 #endif /* PLAYER_H */

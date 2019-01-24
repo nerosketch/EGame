@@ -5,12 +5,12 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>AddPlayerScene.h</itemPath>
-      <itemPath>AddTask.h</itemPath>
       <itemPath>Avatar.h</itemPath>
       <itemPath>Dialog.h</itemPath>
       <itemPath>Game.h</itemPath>
       <itemPath>MainScene.h</itemPath>
       <itemPath>Player.h</itemPath>
+      <itemPath>SceneTasks.h</itemPath>
       <itemPath>Task.h</itemPath>
       <itemPath>TextButton.h</itemPath>
       <itemPath>TextInput.h</itemPath>
@@ -27,12 +27,12 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>AddPlayerScene.cpp</itemPath>
-      <itemPath>AddTask.cpp</itemPath>
       <itemPath>Avatar.cpp</itemPath>
       <itemPath>Dialog.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
       <itemPath>MainScene.cpp</itemPath>
       <itemPath>Player.cpp</itemPath>
+      <itemPath>SceneTasks.cpp</itemPath>
       <itemPath>Task.cpp</itemPath>
       <itemPath>TextButton.cpp</itemPath>
       <itemPath>TextInput.cpp</itemPath>
@@ -97,10 +97,6 @@
       </item>
       <item path="AddPlayerScene.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="AddTask.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="AddTask.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Avatar.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Avatar.h" ex="false" tool="3" flavor2="0">
@@ -120,6 +116,10 @@
       <item path="Player.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SceneTasks.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SceneTasks.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Task.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -161,6 +161,11 @@
         <ccTool>
           <developmentMode>5</developmentMode>
           <standard>8</standard>
+          <incDir>
+            <pElem>./lib/oxygine-framework/oxygine/src</pElem>
+            <pElem>./lib/oxygine-freetype/src</pElem>
+          </incDir>
+          <commandLine>`pkg-config --cflags sdl2`</commandLine>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -168,14 +173,31 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/egame</output>
+          <linkerAddLib>
+            <pElem>./lib/oxygine-framework/libs</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibFileItem>./lib/oxygine-framework/liboxygine-framework.a</linkerLibFileItem>
+            <linkerLibFileItem>./lib/oxygine-freetype/liboxygine-freetype.a</linkerLibFileItem>
+            <linkerLibFileItem>./lib/oxygine-framework/libs/SDL2main.lib</linkerLibFileItem>
+            <linkerLibLibItem>pthread</linkerLibLibItem>
+            <linkerLibLibItem>GL</linkerLibLibItem>
+            <linkerLibLibItem>GLU</linkerLibLibItem>
+            <linkerLibLibItem>glut</linkerLibLibItem>
+            <linkerLibLibItem>png</linkerLibLibItem>
+            <linkerLibLibItem>z</linkerLibLibItem>
+            <linkerLibLibItem>SDL2</linkerLibLibItem>
+            <linkerLibLibItem>jpeg</linkerLibLibItem>
+            <linkerLibLibItem>openal</linkerLibLibItem>
+            <linkerLibLibItem>freetype</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
       <item path="AddPlayerScene.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="AddPlayerScene.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="AddTask.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="AddTask.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Avatar.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -196,6 +218,10 @@
       <item path="Player.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SceneTasks.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SceneTasks.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Task.cpp" ex="false" tool="1" flavor2="0">
       </item>

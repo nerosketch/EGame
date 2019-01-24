@@ -7,9 +7,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/ns/Projects/EGame/Task.cpp</file>
-            <file>file:/home/ns/Projects/EGame/lib/oxygine-framework/oxygine/src/ox/pugixml.hpp</file>
-            <file>file:/home/ns/Projects/EGame/Task.h</file>
+            <file>file:/home/ns/Projects/EGame/res/res.xml</file>
+            <file>file:/home/ns/Projects/EGame/AddPlayerScene.cpp</file>
+            <file>file:/home/ns/Projects/EGame/AddTask.cpp</file>
+            <file>file:/home/ns/Projects/EGame/Dialog.cpp</file>
+            <file>file:/home/ns/Projects/EGame/Dialog.h</file>
         </group>
     </open-files>
 </project-private>

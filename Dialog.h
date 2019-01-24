@@ -20,18 +20,41 @@ using namespace oxygine;
 DECLARE_SMART(Dialog, spDialog);
 
 
-class Dialog : public Box9Sprite
+typedef Closure<void(spObject&)> DialogDoneCallback;
+
+
+class Dialog : public ColorRectSprite
 {
 private:
     void _on_close_click(Event*);
-    void _on_die(Event*);
+    spSprite tech_panel_bot;
+    spSprite tech_panel_top;
+    spSprite tech_panel_top_line;
+    spSprite tech_panel_c1;
+    spSprite tech_panel_c2;
+    spSprite tech_panel_c3;
+
+protected:
+    DialogDoneCallback _dc;
+
+    // Нужно переопределить и добавить событием для кнопки сохранения
+    virtual void on_ok_click(Event*);
 
 public:
     Dialog();
     Dialog(const Dialog& orig);
     virtual ~Dialog();
-private:
 
+    virtual void init();
+
+    inline void setDoneCallback(const DialogDoneCallback& dc)
+    {
+        _dc = dc;
+    }
+    inline void closeSendClick()
+    {
+        _on_close_click(nullptr);
+    }
 };
 
 #endif /* DIALOG_H */

@@ -5,19 +5,27 @@
  * Created on January 13, 2019, 10:36 PM
  */
 
+#include <cstdlib>
+#include <ctime>
 #include <ox/pugixml.hpp>
 #include "Task.h"
 
 
-list<spTask> Task::_global_tasks;
+#define FNAME                   "res/data.xml"
 
 
-Task::Task() : _name(), _description()
+using namespace pugi;
+
+
+task_list Task::_tasks;
+
+
+Task::Task() : _title(), _description()
 {
 }
 
 
-Task::Task(const Task& o) : _name(o._name),
+Task::Task(const Task& o) : _title(o._title),
 _description(o._description)
 {
 }
@@ -28,43 +36,86 @@ Task::~Task()
 }
 
 
-void Task::addTaskGlobal(const spTask& t)
+/*bool check_node_exist(const uint uid, const task_list& arr_p)
 {
-    for(const spTask& ct : _global_tasks)
+    for(const spTask& i : arr_p)
     {
-        if(ct == t)
-            return;
+        if(i->getUid() == uid)
+            return true;
     }
-    _global_tasks.push_back(t);
+    return false;
+}*/
+
+
+/*void Task::saveAll()
+{
+    xml_document doc;
+
+    const char* root_chr = "egame";
+
+    if(!doc.load_file(FNAME))
+    {
+        // создадим root ноду
+        doc.append_child(root_chr);
+    }
+
+    xml_node root = doc.child(root_chr);
+
+    for(const spTask& t : _tasks)
+    {
+        if(check_node_exist(t->getUid(), _tasks))
+        {
+            continue;
+        }
+
+        xml_node node_task = root.append_child("task");
+        node_task.text() = t->_description.c_str();
+        node_task.append_attribute("title") = t->_title.c_str();
+        //node_task.append_attribute("id") = t->getUid();
+    }
+
+    doc.save_file(FNAME);
+}*/
+
+
+bool Task::loadAll()
+{
+    xml_document doc;
+
+    xml_parse_result result = doc.load_file(FNAME);
+
+    if(!result)
+        return false;
+
+    _tasks.clear();
+
+    for(const xml_node& nd : doc.child("egame").children())
+    {
+        /*if(check_node_exist(uid, _tasks))
+        {
+            //cout << "task with uid=" << uid << " exists, continue" << endl;
+            continue;
+        }*/
+
+        spTask t = new Task;
+        //t->setUid(uid);
+        t->_title = nd.attribute("title").as_string();
+        t->_description = nd.text().as_string();
+
+        _tasks.push_back(t);
+    }
+
+    return true;
 }
 
 
-void Task::removeTaskGlobal(const spTask& t)
+const spTask& Task::getRandom()
 {
-    _global_tasks.remove(t);
-}
+    srand( time(0) );
 
+    auto it = _tasks.cbegin();
 
+    int random = rand() % _tasks.size();
 
-void Task::saveToFile(const string& fname)
-{
-    /*pugi::xml_document doc;
-    pugi::xml_node root = doc.append_child("root");
-
-    pugi::xml_node tasks = root.append_child("description");
-
-    doc.save_file(fname);*/
-}
-
-
-void Task::loadFromFile(const string& fname)
-{
-    //load file to buffer
-    /*ox::file::buffer bf;
-    ox::file::read(fname, bf);
-
-    pugi::xml_document doc;
-    doc.load_buffer(&bf.data[0], bf.size());
-    
-    doc.*/
+    return *(it + random);
 }

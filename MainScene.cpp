@@ -7,12 +7,14 @@
 #include "resources.h"
 #include "AddPlayerScene.h"
 #include "MainScene.h"
-#include "AddTask.h"
+#include "SceneTasks.h"
+#include "Player.h"
+#include "Task.h"
 
 
 MainScene::MainScene() :
 arrow(new Sprite), rulet(new Sprite),
-_angle(0.f)
+_angle(0.f), p_question_panel(nullptr)
 {}
 
 
@@ -30,13 +32,13 @@ void MainScene::init()
 
     // Фон слева
     spSprite li = new Sprite;
-    li->setResAnim(res::resources.getResAnim("FQhyYkLevM0"));
+    li->setResAnim(res::resources.getResAnim("ftop.ru_587dd65125936"));
     li->setScale(getHeight() / li->getHeight() * 0.8f);
     li->setPosition(0.f, getHeight()/2 - li->getScaledHeight()/2);
     addChild(li);
     // Фон справа
     spSprite ri = new Sprite;
-    ri->setResAnim(res::resources.getResAnim("MpLDyxcQ8kY"));
+    ri->setResAnim(res::resources.getResAnim("89795"));
     //ri->setAnchor(0.5f, 0.5f);
     ri->setScale(getHeight() / ri->getHeight() * 0.7f);
     ri->setPosition(getWidth() - ri->getScaledWidth(), getHeight()/2 - ri->getScaledHeight()/2);
@@ -72,52 +74,34 @@ void MainScene::init()
     add_question_btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &MainScene::on_add_question));
     addChild(add_question_btn);
 
-    // Добавим авки
-    _players.push_back(new Player("niga"));
-    _players.push_back(new Player("girl1"));
-    _players.push_back(new Player("girl2"));
-    _players.push_back(new Player("boy1"));
-    _players.push_back(new Player("mem1"));
-
-    const uint avs_count = _players.size();
-    const float round = MATH_PI * 2;
-    const float part = float(round / avs_count);
-    float angle = 0.f;
-    const Vector2& center_pos = rulet->getPosition();
-    Vector2 r;
-    
-    for(spPlayer& player : _players)
+    if(!Task::loadAll())
     {
-        // задаём радиус круга 240
-        player->setPosition(
-            center_pos.x + 320.f,
-            center_pos.y
-        );
-
-        // Распологаем авки вокруг центра
-        r.x = center_pos.x + (player->getPosition().x - center_pos.x) * cos(angle) - (player->getPosition().y - center_pos.y) * sin(angle);
-        r.y = center_pos.y + (player->getPosition().y - center_pos.y) * cos(angle) + (player->getPosition().x - center_pos.x) * sin(angle);
-        player->setPosition(r);
-        player->setAnglePos(angle);
-        addChild(player);
-
-        angle += part;
+        logs::messageln("Error while loading tasks");
     }
-
 }
 
 
 void MainScene::on_click_run(Event*)
 {
+#ifdef DBG
     logs::messageln("MainScene::click_run");
+#endif
 
     _angle = scalar::randFloat(0.f, (MATH_PI*2.f)*8);
 
     arrow->addTween(Sprite::TweenRotation(_angle), 5000, 1, false, 0, Tween::ease_inOutBounce)
         ->setDoneCallback(CLOSURE(this, &MainScene::on_speen_done));
 
-    rulet->addTween(Sprite::TweenRotation(-MATH_PI*2.f), 5000, 1, false, 0, Tween::ease_outQuad)
-        ->setDoneCallback(CLOSURE(this, &MainScene::on_rulet_speen_done));
+    rulet->addTween(Sprite::TweenRotation(-MATH_PI*4.f), 5000, 1, false, 0, Tween::ease_outQuad)
+        ->setDoneCallback([&](Event*)
+        {
+            rulet->setRotation(0.f);
+        });
+
+    if(p_question_panel != nullptr)
+    {
+        p_question_panel->detach();
+    }
 }
 
 
@@ -150,6 +134,18 @@ void MainScene::on_speen_done(Event*)
         if(arrow_angle > a && arrow_angle < b)
         {
             player->win();
+
+            const spTask& t = Task::getRandom();
+            spTextPanel task_panel = new TextPanel(t->getDescription());
+            task_panel->setAnchor(0.5f, 0.5f);
+            task_panel->setPosition(getSize() / 2);
+            task_panel->setScale(3.f);
+            task_panel->setOnDieEvent([&](Event*){
+                p_question_panel = nullptr;
+            });
+            p_question_panel = task_panel.get();
+            addChild(task_panel);
+
             break;
         }
     }
@@ -157,27 +153,65 @@ void MainScene::on_speen_done(Event*)
 }
 
 
-
 void MainScene::on_add_player(Event*)
 {
     spAddPlayerScene ap = new AddPlayerScene;
+    ap->init();
     //ap->setAnchor(0.5f, 0.5f);
     //ap->setPosition(getPosition()/2);
-    ap->setPosition(90.f, 70.f);
+    //ap->setPosition(90.f, 70.f);
     //ap->setSize(getSize() * 0.7f);
+    ap->setDoneCallback(CLOSURE(this, &MainScene::on_add_player_done));
     addChild(ap);
+}
+
+
+void MainScene::on_add_player_done(spObject& ob)
+{
+    logs::messageln("::Player done");
+
+    spPlayer new_player = safeSpCast<Player>(ob);
+
+    _players.push_back(new_player);
+
+    const uint avs_count = _players.size();
+    const float round = MATH_PI * 2;
+    const float part = round / avs_count;
+    float angle = 0.f;
+    const Vector2& center_pos = rulet->getPosition();
+    Vector2 r;
+    
+    for(spPlayer& player : _players)
+    {
+        // задаём радиус круга 240
+        player->setPosition(
+            center_pos.x + 320.f,
+            center_pos.y
+        );
+
+        // Распологаем авки вокруг центра
+        r.x = center_pos.x + (player->getPosition().x - center_pos.x) * cos(angle) - (player->getPosition().y - center_pos.y) * sin(angle);
+        r.y = center_pos.y + (player->getPosition().y - center_pos.y) * cos(angle) + (player->getPosition().x - center_pos.x) * sin(angle);
+        player->setPosition(r);
+        player->setAnglePos(angle);
+        addChild(player);
+
+        angle += part;
+    }
 }
 
 
 void MainScene::on_add_question(Event*)
 {
-    spAddTask at = new AddTask;
-    at->setPosition(90.f, 70.f);
-    addChild(at);
+    spSceneTasks st = new SceneTasks;
+    st->init();
+    //at->setPosition(90.f, 70.f);
+    //st->setDoneCallback(CLOSURE(this, &MainScene::on_add_question_done));
+    addChild(st);
 }
 
 
-void MainScene::on_rulet_speen_done(Event*)
+/*void MainScene::on_add_question_done(spObject&)
 {
-    rulet->setRotation(0.f);
-}
+    logs::messageln("::Question done");
+}*/

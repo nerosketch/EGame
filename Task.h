@@ -8,42 +8,47 @@
 #ifndef TASK_H
 #define TASK_H
 
-#include <memory>
-#include <list>
+#include <vector>
 #include <string>
+#include <oxygine-framework.h>
 
 
 using namespace std;
 
-class Task;
-typedef shared_ptr<Task> spTask;
+
+DECLARE_SMART(Task, spTask);
+
+typedef vector<spTask> task_list;
 
 
-
-class Task
+class Task : public oxygine::Object
 {
 private:
-    static list<spTask> _global_tasks;
-    string _name;
+    string _title;
     string _description;
+    //uint _uid;
+    static task_list _tasks;
 
 public:
     Task();
     Task(const Task&);
     virtual ~Task();
 
-    inline static list<spTask>& getTasks(){ return _global_tasks; }
-    static void addTaskGlobal(const spTask&);
-    static void removeTaskGlobal(const spTask&);
 
-    static void saveToFile(const string& fname = "tasks.q");
-    static void loadFromFile(const string& fname = "tasks.q");
-
-    inline void setName(const string& name){ _name = name; }
-    inline const string& getName() const { return _name; }
+    inline void setTitle(const string& title){ _title = title; }
+    inline const string& getTitle() const { return _title; }
     inline void setDescription(const string& descr){ _description = descr; }
     inline const string& getDescription() const { return _description; }
+    //inline void setUid(const uint uid){ _uid = uid; }
+    //inline const uint getUid() const { return _uid; }
 
+    //static void saveAll();
+    static bool loadAll();
+    static task_list& getTasks()
+    {
+        return _tasks;
+    }
+    static const spTask& getRandom();
 };
 
 

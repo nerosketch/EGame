@@ -8,32 +8,46 @@
 #include "AddPlayerScene.h"
 #include "resources.h"
 #include "Player.h"
-#include "TextButton.h"
 
 
 const char* ava_names[] = {"niga", "girl1", "girl2", "boy1", "mem1"};
 
 
-AddPlayerScene::AddPlayerScene() : _ava_im(new Sprite),
+AddPlayerScene::AddPlayerScene() : Dialog(), _ava_im(new Sprite),
 _current_ava(0), text_inp_name(new TextInput)
+{}
+
+
+AddPlayerScene::AddPlayerScene(const AddPlayerScene& o)
+{}
+
+
+AddPlayerScene::~AddPlayerScene()
+{}
+
+
+void AddPlayerScene::init()
 {
+    Dialog::init();
+
     // Текст заголовок
     spTextField title = new TextField;
     title->setText("Добавить игрока");
-    title->setPosition(getWidth() / 2.f - 80.f, 15.f);
+    title->setPosition(getWidth() / 2.f - 80.f, 65.f);
     title->setFontSize(24);
     title->setColor(Color::Crimson);
     addChild(title);
 
     // Ввод имени
     spTextField text_input_name = new TextField;
-    text_input_name->setText("Впиши своё имя");
-    text_input_name->setPosition(25.f, 70.f);
+    text_input_name->setText("Впиши имя");
+    text_input_name->setPosition(145.f, 180.f);
     text_input_name->setFontSize(21);
     text_input_name->setColor(Color::BlanchedAlmond);
     addChild(text_input_name);
     // Тут хранится текст
-    text_inp_name->setPosition(175.f, 67.f);
+    text_inp_name->init();
+    text_inp_name->setPosition(text_input_name->getX() + 150, text_input_name->getY() - 3);
     addChild(text_inp_name);
 
     // Спрайт для выбора авки
@@ -57,27 +71,16 @@ _current_ava(0), text_inp_name(new TextInput)
     select_right_ava->setPosition(getWidth() / 2.f + 90.f, y_pos);
     select_right_ava->addEventListener(TouchEvent::CLICK, CLOSURE(this, &AddPlayerScene::_on_select_right));
     addChild(select_right_ava);
-    
-    // Кнопка ОК
-    spTextButton ok_btn = new TextButton("ОК");
-    ok_btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &AddPlayerScene::_on_ok_click));
-    ok_btn->setAnchor(0.5f, 0.5f);
-    ok_btn->setPosition(getWidth() / 2.f, getHeight() - ok_btn->getHeight());
-    addChild(ok_btn);
 }
 
-
-AddPlayerScene::AddPlayerScene(const AddPlayerScene& o)
-{}
-
-
-AddPlayerScene::~AddPlayerScene()
-{}
 
 
 void AddPlayerScene::_on_select_left(Event*)
 {
+#ifdef DBG
     logs::messageln("AddPlayerScene::_on_select_left");
+#endif
+
     _current_ava--;
     _round_current_ava();
     _ava_im->setResAnim(res::resources.getResAnim(ava_names[_current_ava]));
@@ -86,7 +89,10 @@ void AddPlayerScene::_on_select_left(Event*)
 
 void AddPlayerScene::_on_select_right(Event*)
 {
+#ifdef DBG
     logs::messageln("AddPlayerScene::_on_select_right");
+#endif
+
     _current_ava++;
     _round_current_ava();
     _ava_im->setResAnim(res::resources.getResAnim(ava_names[_current_ava]));
@@ -102,13 +108,17 @@ void AddPlayerScene::_round_current_ava()
 }
 
 
-void AddPlayerScene::_on_ok_click(Event*)
+void AddPlayerScene::on_ok_click(Event* ev)
 {
+#ifdef DBG
     logs::messageln("AddPlayerScene::_on_ok_click");
+#endif
 
     spPlayer player = new Player(ava_names[_current_ava]);
     player->setName(text_inp_name->getText());
 
-    Player::addPlayerGlobal(player);
     detach();
+
+    ev->userData = player.get();
+    Dialog::on_ok_click(ev);
 }
