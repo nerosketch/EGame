@@ -9,12 +9,13 @@
         <group>
             <file>file:/home/ns/Projects/EGame/TextPanel.h</file>
             <file>file:/home/ns/Projects/EGame/TextPanel.cpp</file>
+            <file>file:/home/ns/Projects/EGame/TextInput.h</file>
             <file>file:/home/ns/Projects/EGame/Task.cpp</file>
+            <file>file:/home/ns/Projects/EGame/TextButton.h</file>
             <file>file:/home/ns/Projects/EGame/MainScene.cpp</file>
-            <file>file:/home/ns/Projects/EGame/Player.cpp</file>
+            <file>file:/home/ns/Projects/EGame/res/data.xml</file>
             <file>file:/home/ns/Projects/EGame/MainScene.h</file>
-            <file>file:/home/ns/Projects/EGame/SceneTasks.cpp</file>
-            <file>file:/home/ns/Projects/EGame/Player.h</file>
+            <file>file:/home/ns/Projects/EGame/SceneTasks.h</file>
             <file>file:/home/ns/Projects/EGame/Task.h</file>
         </group>
     </open-files>

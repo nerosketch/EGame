@@ -88,10 +88,18 @@ void MainScene::on_click_run(Event*)
     logs::messageln("MainScene::click_run");
 #endif
 
+    const auto players_count = _players.size();
+
+    if(players_count < 1)
+    {
+        TextPanel::showMessage("Надо добавить игроков", this);
+        return;
+    }
+
     srand(time(nullptr));
-    _win_user_index = RANDOM_RANGE(0, _players.size() - 1);
+    _win_user_index = RANDOM_RANGE(0, players_count - 1);
     _spin_round_count = RANDOM_RANGE(1, 6);
-    
+
     const spPlayer& pl = _players[_win_user_index];
     const float _angle = pl->getAnglePos() + (_spin_round_count * MATH_PI*2.f);
 
@@ -165,7 +173,7 @@ void MainScene::on_add_player_done(spObject& ob)
     float angle = 0.f;
     const Vector2& center_pos = rulet->getPosition();
     Vector2 r;
-    
+
     for(spPlayer& player : _players)
     {
         // задаём радиус круга 240

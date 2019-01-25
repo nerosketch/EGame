@@ -44,6 +44,7 @@ public:
 
     void setTimeToLive(const uint ttl = 1000);
     void setOnDieEvent(const EventCallback&);
+    static void showMessage(const string&, Actor*);
 
     spButton ok_btn;
 };

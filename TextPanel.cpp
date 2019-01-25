@@ -16,10 +16,10 @@
 TextPanel::TextPanel() : text_field(new TextField),
 ok_btn(new Button)
 {
-    TextField::setDefaultFont(res::resources.getResFont("SanasoftHermes"));
+    //TextField::setDefaultFont(res::resources.getResFont("SanasoftHermes"));
+    text_field->setFont(res::resources.getResFont("SanasoftHermes"));
     setResAnim(res::resources.getResAnim("panel"));
     setGuides(TILE_WIDTH, TILE_WIDTH, TILE_HEIGHT, TILE_HEIGHT);
-
 }
 
 
@@ -105,4 +105,16 @@ void TextPanel::_kill_me(Event* ev)
 void TextPanel::setOnDieEvent(const EventCallback& ev)
 {
     _die_event = ev;
+}
+
+
+void TextPanel::showMessage(const string& msg, Actor *p_actor)
+{
+    spTextPanel tp(new TextPanel);
+    tp->setPosition(p_actor->getSize() / 2);
+    tp->setScale(2.f);
+    tp->setAnchor(0.5f, 0.5f);
+    tp->init(msg);
+    tp->attachTo(p_actor);
+    tp->setTimeToLive(4000);
 }
