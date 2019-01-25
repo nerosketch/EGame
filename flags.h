@@ -12,7 +12,7 @@
 
 
 // Включаем звук
-//#define SOUND_ENABLE
+#define SOUND_ENABLE
 
 
 #endif /* FLAGS_H */

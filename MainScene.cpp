@@ -92,7 +92,7 @@ void MainScene::on_click_run(Event*)
 
     if(players_count < 1)
     {
-        TextPanel::showMessage("Надо добавить игроков", this);
+        TextPanel::showMessage("Дурак чтоль?! Сначала надо добавить игроков ;P", this);
         return;
     }
 

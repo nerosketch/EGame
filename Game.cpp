@@ -9,6 +9,12 @@
 #include <ResFontFT.h>
 #include "resources.h"
 #include "Game.h"
+#include "SoundManager.h"
+
+
+#ifdef SOUND_ENABLE
+#include <oxygine-sound.h>
+#endif
 
 
 Game::Game() :
@@ -17,16 +23,19 @@ Game::Game() :
     _clearColor(0, 0, 0, 0)
 {}
 
+
 Game::Game(const Game& o) :
     _viewport(o._viewport),
     _clearColor(o._clearColor)
 {}
+
 
 Game::~Game()
 {}
 
 
 void Game::preinit(){}
+
 
 bool Game::init()
 {
@@ -52,6 +61,8 @@ bool Game::init()
 
     return true;
 }
+
+
 void Game::destroy()
 {
 #ifdef DBG
@@ -61,7 +72,8 @@ void Game::destroy()
     ResFontFT::freeLibrary();
 
 #ifdef SOUND_ENABLE
-    stage_manager->p_sound->stop();
+    SoundManager& sm = SoundManager::get_instance();
+    sm.stop();
 
     SoundPlayer::free();
     SoundSystem::free();
@@ -69,8 +81,18 @@ void Game::destroy()
 
     res::free();
 }
+
+
 bool Game::update()
 {
+#ifdef SOUND_ENABLE
+    SoundManager& sm = SoundManager::get_instance();
+    SoundSystem::get()->update();
+    sm.update();
+#endif
+
     return false;
 }
+
+
 void Game::flush(){}

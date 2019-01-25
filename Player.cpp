@@ -6,10 +6,14 @@
  */
 #include "resources.h"
 #include "Player.h"
+#include "SoundManager.h"
 
 
-Player::Player(const string& res_name) : Avatar(res_name),
-_name(res_name), _angle(0.f), _tx(new TextField)
+Player::Player(const string& res_name, const string& voice) : Avatar(res_name),
+_name(res_name), _angle(0.f), _tx(new TextField),
+#ifdef SOUND_ENABLE
+_voice(voice)
+#endif
 {
     TextField::setDefaultFont(res::resources.getResFont("SanasoftHermes"));
     _tx->setText(res_name);
@@ -37,6 +41,11 @@ void Player::win()
 #endif
 
     anim_win();
+
+#ifdef SOUND_ENABLE
+    SoundManager& sm = SoundManager::get_instance();
+    sm.play_from_name(_voice);
+#endif
 }
 
 

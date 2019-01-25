@@ -45,9 +45,12 @@ private:
     string _name;
     float _angle;
     spTextField _tx;
+#ifdef SOUND_ENABLE
+    string _voice;
+#endif
 
 public:
-    Player(const string& res_name);
+    Player(const string& res_name, const string&);
     Player(const Player& orig);
     virtual ~Player();
 

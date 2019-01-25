@@ -10,6 +10,7 @@
       <itemPath>MainScene.h</itemPath>
       <itemPath>Player.h</itemPath>
       <itemPath>SceneTasks.h</itemPath>
+      <itemPath>SoundManager.h</itemPath>
       <itemPath>Task.h</itemPath>
       <itemPath>TextButton.h</itemPath>
       <itemPath>TextInput.h</itemPath>
@@ -22,6 +23,7 @@
                    displayName="Resource Files"
                    projectFiles="true">
       <itemPath>res/res.xml</itemPath>
+      <itemPath>res/sounds.xml</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -32,6 +34,7 @@
       <itemPath>MainScene.cpp</itemPath>
       <itemPath>Player.cpp</itemPath>
       <itemPath>SceneTasks.cpp</itemPath>
+      <itemPath>SoundManager.cpp</itemPath>
       <itemPath>Task.cpp</itemPath>
       <itemPath>TextButton.cpp</itemPath>
       <itemPath>TextInput.cpp</itemPath>
@@ -65,6 +68,7 @@
           <incDir>
             <pElem>./lib/oxygine-framework/oxygine/src</pElem>
             <pElem>./lib/oxygine-freetype/src</pElem>
+            <pElem>./lib/oxygine-sound/src</pElem>
           </incDir>
           <commandLine>`pkg-config --cflags sdl2`</commandLine>
           <preprocessorList>
@@ -89,6 +93,10 @@
             <linkerLibLibItem>jpeg</linkerLibLibItem>
             <linkerLibLibItem>openal</linkerLibLibItem>
             <linkerLibLibItem>freetype</linkerLibLibItem>
+            <linkerLibFileItem>lib/oxygine-sound/liboxygine-sound.a</linkerLibFileItem>
+            <linkerLibFileItem>lib/oxygine-sound/tremor/libtremor.a</linkerLibFileItem>
+            <linkerLibLibItem>ogg</linkerLibLibItem>
+            <linkerLibLibItem>openal</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -116,6 +124,10 @@
       </item>
       <item path="SceneTasks.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="SoundManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SoundManager.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Task.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Task.h" ex="false" tool="3" flavor2="0">
@@ -139,6 +151,8 @@
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="res/res.xml" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/sounds.xml" ex="false" tool="3" flavor2="0">
       </item>
       <item path="resources.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -216,6 +230,10 @@
       </item>
       <item path="SceneTasks.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="SoundManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SoundManager.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Task.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Task.h" ex="false" tool="3" flavor2="0">
@@ -239,6 +257,8 @@
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="res/res.xml" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/sounds.xml" ex="false" tool="3" flavor2="0">
       </item>
       <item path="resources.cpp" ex="false" tool="1" flavor2="0">
       </item>

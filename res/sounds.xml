@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <set path="res/audio"/>
+    <sound file="ieshuva.ogg"/>
+    <sound file="i.ogg"/>
+</resources>

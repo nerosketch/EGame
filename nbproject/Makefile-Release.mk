@@ -41,6 +41,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/MainScene.o \
 	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/SceneTasks.o \
+	${OBJECTDIR}/SoundManager.o \
 	${OBJECTDIR}/Task.o \
 	${OBJECTDIR}/TextButton.o \
 	${OBJECTDIR}/TextInput.o \
@@ -108,6 +109,11 @@ ${OBJECTDIR}/SceneTasks.o: SceneTasks.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SceneTasks.o SceneTasks.cpp
+
+${OBJECTDIR}/SoundManager.o: SoundManager.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I./lib/oxygine-framework/oxygine/src -I./lib/oxygine-freetype/src -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SoundManager.o SoundManager.cpp
 
 ${OBJECTDIR}/Task.o: Task.cpp
 	${MKDIR} -p ${OBJECTDIR}

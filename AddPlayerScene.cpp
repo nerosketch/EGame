@@ -114,7 +114,9 @@ void AddPlayerScene::on_ok_click(Event* ev)
     logs::messageln("AddPlayerScene::_on_ok_click");
 #endif
 
-    spPlayer player = new Player(ava_names[_current_ava]);
+    const char* voices[] = {"i", "ieshuva"};
+    const int i = RANDOM_RANGE(0, 1);
+    spPlayer player = new Player(ava_names[_current_ava], voices[i]);
     player->setName(text_inp_name->getText());
 
     detach();
