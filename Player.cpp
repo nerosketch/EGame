@@ -10,9 +10,9 @@
 
 
 Player::Player(const string& res_name, const string& voice) : Avatar(res_name),
-_name(res_name), _angle(0.f), _tx(new TextField),
+_name(res_name), _angle(0.f), _tx(new TextField)
 #ifdef SOUND_ENABLE
-_voice(voice)
+,_voice(voice)
 #endif
 {
     TextField::setDefaultFont(res::resources.getResFont("SanasoftHermes"));

@@ -1,7 +1,11 @@
 .dep.inc
 build/
 dist/
-#nbproject/
+nbproject/
+CMakeFiles/
+Makefile
+CMakeCache.txt
+cmake_install.cmake
 
 # Prerequisites
 *.d
