@@ -3,7 +3,7 @@ project (EGAME)
 
 set(APP_NAME Egame)
 
-set( CMAKE_BUILD_TYPE DEBUG )
+set( CMAKE_BUILD_TYPE RELEASE )
 
 set(EGAME_INCLUDE_DIRS
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/oxygine-sound/dependencies/tremor/Tremor
@@ -40,6 +40,7 @@ set(SRC
 set(LIBS
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/oxygine-framework/liboxygine-framework.a
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/oxygine-freetype/liboxygine-freetype.a
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/oxygine-sound/liboxygine-sound.a
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/oxygine-sound/dependencies/tremor/libtremor.a
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/oxygine-framework/libs/SDL2main.lib
 	pthread
@@ -53,13 +54,6 @@ set(LIBS
 	openal
 	freetype
 	ogg)
-
-
-add_subdirectory(./lib/oxygine-framework oxygine-framework)
-add_subdirectory(./lib/oxygine-sound oxygine-sound)
-add_definitions(${OXYGINE_DEFINITIONS})
-
-install(TARGETS oxygine-framework DESTINATION ./lib/oxygine-framework)
 
 
 find_package(PkgConfig)
