@@ -20,25 +20,25 @@ set(EGAME_DEFINITIONS
 	-DDBG=1)
 
 set(SRC
-	AddPlayerScene.cpp
-	Dialog.cpp
-	Game.cpp
-	MainScene.cpp
-	Player.cpp
-	SceneTasks.cpp
-	SoundManager.cpp
-	Task.cpp
-	TextButton.cpp
-	TextInput.cpp
-	TextPanel.cpp
-	main.cpp
-	resources.cpp)
+	src/AddPlayerScene.cpp
+	src/Dialog.cpp
+	src/Game.cpp
+	src/MainScene.cpp
+	src/Player.cpp
+	src/SceneTasks.cpp
+	src/SoundManager.cpp
+	src/Task.cpp
+	src/TextButton.cpp
+	src/TextInput.cpp
+	src/TextPanel.cpp
+	src/main.cpp
+	src/resources.cpp)
 
 set(LIBS
-	${CMAKE_CURRENT_SOURCE_DIR}/oxygine-framework/liboxygine-framework.a
-	${CMAKE_CURRENT_SOURCE_DIR}/oxygine-freetype/liboxygine-freetype.a
-	${CMAKE_CURRENT_SOURCE_DIR}/oxygine-sound/liboxygine-sound.a
-	${CMAKE_CURRENT_SOURCE_DIR}/oxygine-sound/tremor/libtremor.a
+	${CMAKE_CURRENT_SOURCE_DIR}/build/oxygine-framework/liboxygine-framework.a
+	${CMAKE_CURRENT_SOURCE_DIR}/build/oxygine-freetype/liboxygine-freetype.a
+	${CMAKE_CURRENT_SOURCE_DIR}/build/oxygine-sound/liboxygine-sound.a
+	${CMAKE_CURRENT_SOURCE_DIR}/build/oxygine-sound/tremor/libtremor.a
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/oxygine-framework/libs/SDL2main.lib
 	pthread
 	GL
@@ -62,19 +62,19 @@ find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
 # Target oxygine-framework
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lib/oxygine-framework oxygine-framework)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lib/oxygine-framework build/oxygine-framework)
 add_definitions(${OXYGINE_DEFINITIONS})
 include_directories(${OXYGINE_INCLUDE_DIRS})
 link_directories(${OXYGINE_LIBRARY_DIRS})
 #target_include_directories(${APP_NAME} SYSTEM PUBLIC ${SDL2_INCLUDE_DIRS} )
 
 # Target oxygine-sound
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lib/oxygine-sound oxygine-sound)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lib/oxygine-sound build/oxygine-sound)
 include_directories(${OXYGINESOUND_INCLUDE_DIRS})
 
 
 # Target oxygine-freetype
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lib/oxygine-freetype oxygine-freetype)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lib/oxygine-freetype build/oxygine-freetype)
 include_directories(${OXYGINE_FREETYPE_INCLUDE_DIRS})
 link_directories(${OXYGINE_FREETYPE_LIBRARY_DIRS})
 
