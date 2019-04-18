@@ -6,5 +6,4 @@ git submodule init &&\
 git submodule update &&\
 cmake . &&\
 make -j4 &&\
-./Egame&
-
+./Egame
